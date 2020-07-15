@@ -1,0 +1,29 @@
+.profile-header {
+  height: 200px;
+  width: 100%;
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-icon {
+  font-size: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-content {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.about-me {
+  margin: 10px 0;
+}
+
+mat-chip {
+  display: block;
+  text-align: center;
+}
