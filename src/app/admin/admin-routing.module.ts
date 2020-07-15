@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BannerComponent } from './components/banner/banner.component';
-import { MainViewComponent } from './components/main-view/main-view.component';
+import { NavComponent } from './components/nav/nav.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainViewComponent,
+    component: NavComponent,
+    children: [],
   },
 ];
 
@@ -15,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HomeRoutingModule {}
+export class AdminRoutingModule {}

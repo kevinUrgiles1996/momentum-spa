@@ -11,6 +11,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -26,6 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatRadioModule,
     MatChipsModule,
     MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   exports: [
     MatButtonModule,
@@ -38,6 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatRadioModule,
     MatChipsModule,
     MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
   ],
 })
 export class MaterialModule {}

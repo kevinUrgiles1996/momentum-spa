@@ -4,9 +4,11 @@ import { SharedModule } from '../shared/shared.module';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { BannerComponent } from './components/banner/banner.component';
+import { UserComponent } from './components/user/user.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
 
 @NgModule({
-  declarations: [BannerComponent],
+  declarations: [BannerComponent, UserComponent, MainViewComponent],
   imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}
