@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BannerComponent } from './components/banner/banner.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 
 const routes: Routes = [

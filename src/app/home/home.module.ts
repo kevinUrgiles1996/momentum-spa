@@ -9,6 +9,6 @@ import { MainViewComponent } from './components/main-view/main-view.component';
 
 @NgModule({
   declarations: [BannerComponent, UserComponent, MainViewComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule],
+  imports: [CommonModule, SharedModule, HomeRoutingModule],
 })
 export class HomeModule {}
