@@ -1,0 +1,10 @@
+<div class="goals-container">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Activas">
+      <app-goal *ngFor="let goal of activeGoals" [goal]="goal"></app-goal>
+    </mat-tab>
+    <mat-tab label="Terminadas">
+      <app-goal *ngFor="let goal of completedGoals" [goal]="goal"></app-goal>
+    </mat-tab>
+  </mat-tab-group>
+</div>

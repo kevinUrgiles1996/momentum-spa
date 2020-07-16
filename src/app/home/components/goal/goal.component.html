@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-title>
+    <div class="row between-xs middle-xs">
+      <h2>{{ goal.title }}</h2>
+      <mat-icon *ngIf="goal.public; else elseBlock">public</mat-icon>
+      <ng-template #elseBlock><mat-icon>lock</mat-icon></ng-template>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <p>Semana {{ goal.currentWeek }}/{{ goal.totalWeeks }}</p>
+    <div class="row between-xs middle-xs">
+      <mat-progress-bar
+        color="primary"
+        mode="determinate"
+        value="{{ (goal.currentWeek / goal.totalWeeks) * 100 }}"
+      ></mat-progress-bar>
+      <button mat-mini-fab color="primary">
+        <mat-icon>arrow_right_alt</mat-icon>
+      </button>
+    </div>
+    <div class="row middle-xs between-xs report-info">
+      <p *ngIf="goal.nextReportDate == ''">
+        <strong>Actividad Finalizada</strong>
+      </p>
+
+      <p *ngIf="goal.nextReportDate != ''">
+        Siguiente reporte: <strong>{{ goal.nextReportDate }}</strong>
+      </p>
+
+      <button
+        *ngIf="goal.nextReportDate == 'Hoy'"
+        mat-raised-button
+        color="accent"
+      >
+        Reportar
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

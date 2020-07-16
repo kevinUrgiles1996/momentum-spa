@@ -13,6 +13,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -30,6 +32,8 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatButtonModule,
@@ -44,6 +48,8 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
+    MatTabsModule,
+    MatProgressBarModule,
   ],
 })
 export class MaterialModule {}
