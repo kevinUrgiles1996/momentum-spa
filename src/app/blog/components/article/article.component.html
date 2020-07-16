@@ -1,0 +1,22 @@
+<mat-card class="article">
+  <mat-card-header class="card-header">
+    <mat-card-title>
+        {{article.title}}
+    </mat-card-title>
+    <mat-card-actions>
+      <mat-icon>favorite_border</mat-icon>
+    </mat-card-actions>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <p>
+        {{article.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">
+    <div class="card-footer-data">
+      <p>{{ article.author }}</p>
+      <p>{{ article.date }}</p>
+    </div>
+    <p class="starts">{{ article.starts }} likes</p>
+  </mat-card-footer>
+</mat-card>
