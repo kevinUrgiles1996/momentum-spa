@@ -1,0 +1,40 @@
+.article{
+    margin-bottom: 1rem;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.starts{
+    display: none;
+}
+
+.card-footer{
+    display: contents;
+    color: lightslategray;
+}
+
+.card-footer-data{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 600px){
+    .card-content{
+        max-width: 90%;
+    }
+    .card-footer-data{
+        max-width: 30%;
+    }
+    .card-footer{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+    }
+    .starts {
+        display: inline;
+    }
+}

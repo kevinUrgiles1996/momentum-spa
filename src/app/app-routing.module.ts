@@ -23,6 +23,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./blog/blog.module').then((m) => m.BlogModule),
       },
+      {
+        path: 'notifications',
+        loadChildren: () =>
+          import('./notifications/notifications.module').then((m) => m.NotificationsModule),
+      },
     ],
   },
   {
