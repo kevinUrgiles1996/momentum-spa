@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GoalsComponent implements OnInit {
   activeGoals: any[] = [
     {
+      id: 1,
       title: 'Trotar 45 minutos',
       public: false,
       nextReportDate: '27 de Julio',
@@ -15,6 +16,7 @@ export class GoalsComponent implements OnInit {
       totalWeeks: 4,
     },
     {
+      id: 2,
       title: 'Leer 20 minutos',
       public: true,
       nextReportDate: 'Hoy',
@@ -25,6 +27,7 @@ export class GoalsComponent implements OnInit {
 
   completedGoals: any[] = [
     {
+      id: 3,
       title: 'Estudiar Algebra',
       public: true,
       nextReportDate: '',
@@ -32,6 +35,7 @@ export class GoalsComponent implements OnInit {
       totalWeeks: 6,
     },
     {
+      id: 4,
       title: 'Dibujar',
       public: true,
       nextReportDate: '',

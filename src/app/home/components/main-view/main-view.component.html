@@ -1,4 +1,4 @@
-<div class="row bottom-xs">
+<div class="row">
   <div class="col-md-3 col-xs-12">
     <app-user></app-user>
   </div>
@@ -7,9 +7,16 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-offset-11">
-    <button mat-fab color="accent">
+  <div class="col-xs-1 col-xs-offset-11">
+    <button id="step4" mat-fab color="accent">
       <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button color="" mat-raised-button (click)="startTutorial()">
+      Tutorial guiado
     </button>
   </div>
 </div>
