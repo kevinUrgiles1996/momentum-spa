@@ -1,0 +1,135 @@
+<mat-horizontal-stepper #stepper>
+  <mat-step
+    [stepControl]="firstFormGroup"
+    errorMessage="Estos campos son requeridos"
+  >
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Detalla tu meta</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Categoría</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option value="Relaciones personales y familia"
+                    >Relaciones personales y familia</mat-option
+                  >
+                  <mat-option value="Hobbies y recreación"
+                    >Hobbies y recreación</mat-option
+                  >
+                  <mat-option value="Desarrollo profesional"
+                    >Desarrollo profesional</mat-option
+                  >
+                  <mat-option value="Salud y estilo de vida"
+                    >Salud y estilo de vida</mat-option
+                  >
+
+                  <mat-option value="Dinero y Finanzas"
+                    >Dinero y finanzas</mat-option
+                  >
+                  <mat-option value="Educación">Educación</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Nombre de tu meta</mat-label>
+                <input
+                  matInput
+                  placeholder="Ej. Bajar 10 Kilos"
+                  formControlName="goal"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Me comprometo a </mat-label>
+                <textarea
+                  matInput
+                  placeholder="Correr todos los días, mejorar mi dieta"
+                  formControlName="commitment"
+                  rows="15"
+                ></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <img mat-card-image src="/assets/images/goals.png" alt="" />
+              <button mat-raised-button color="accent">Saber más</button>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" matStepperNext>Siguiente</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step
+    [stepControl]="secondFormGroup"
+    errorMessage="Estos campos son requeridos"
+  >
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Selecciona el período de tu meta</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <mat-form-field>
+                <mat-label>Me gustaría reportar</mat-label>
+                <mat-select formControlName="reportFrequency">
+                  <mat-option value="diariamente">Diariamente</mat-option>
+                  <mat-option value="Semanalmente">Semanalmente</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de inicio</mat-label>
+                <input
+                  formControlName="startDate"
+                  matInput
+                  [matDatepicker]="startDatePicker"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="startDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de finalización</mat-label>
+                <input
+                  formControlName="endDate"
+                  matInput
+                  [matDatepicker]="endDatePicker"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="endDatePicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <img
+                class="create-goal-img"
+                mat-card-image
+                src="/assets/images/calendar.jpg"
+                alt=""
+              />
+              <!-- <button mat-raised-button color="accent">Saber más</button> -->
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Establece una apuesta</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

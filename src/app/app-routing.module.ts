@@ -10,11 +10,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: '/goals',
         pathMatch: 'full',
       },
       {
-        path: 'home',
+        path: 'goals',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
       },
@@ -26,7 +26,9 @@ const routes: Routes = [
       {
         path: 'notifications',
         loadChildren: () =>
-          import('./notifications/notifications.module').then((m) => m.NotificationsModule),
+          import('./notifications/notifications.module').then(
+            (m) => m.NotificationsModule
+          ),
       },
     ],
   },

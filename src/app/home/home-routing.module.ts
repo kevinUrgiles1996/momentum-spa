@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { GoalDetailComponent } from './components/goal-detail/goal-detail.component';
+import { CreateGoalComponent } from './components/create-goal/create-goal.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,11 @@ const routes: Routes = [
     component: MainViewComponent,
   },
   {
-    path: 'goals/:goalId',
+    path: 'create',
+    component: CreateGoalComponent,
+  },
+  {
+    path: ':goalId',
     component: GoalDetailComponent,
   },
 ];

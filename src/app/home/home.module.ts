@@ -10,6 +10,9 @@ import { GoalComponent } from './components/goal/goal.component';
 import { GoalDetailComponent } from './components/goal-detail/goal-detail.component';
 import { GoalProgressComponent } from './components/goal-progress/goal-progress.component';
 import { ChartsModule } from 'ng2-charts';
+import { CreateGoalComponent } from './components/create-goal/create-goal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,15 @@ import { ChartsModule } from 'ng2-charts';
     GoalComponent,
     GoalDetailComponent,
     GoalProgressComponent,
+    CreateGoalComponent,
   ],
-  imports: [CommonModule, SharedModule, HomeRoutingModule, ChartsModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    HomeRoutingModule,
+    ChartsModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
 export class HomeModule {}

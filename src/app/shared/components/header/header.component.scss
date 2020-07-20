@@ -1,13 +1,14 @@
 nav a {
   text-decoration: none;
+  border-radius: 0;
 }
 
 nav a.active {
-  background: darkseagreen;
+  border-bottom: 1.5px solid white;
 }
 
 .header-toolbar {
-  // margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 a {

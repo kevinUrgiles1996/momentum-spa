@@ -10,8 +10,6 @@
       >
         <mat-icon>public</mat-icon>
       </mat-slide-toggle>
-      <!-- <mat-icon *ngIf="goal.public; else elseBlock">public</mat-icon>
-      <ng-template #elseBlock><mat-icon>lock</mat-icon></ng-template> -->
     </div>
   </mat-card-title>
   <mat-card-content>
@@ -23,7 +21,7 @@
         value="{{ (goal.currentWeek / goal.totalWeeks) * 100 }}"
       ></mat-progress-bar>
       <button mat-mini-fab color="primary">
-        <mat-icon routerLink="goals/{{ goal.id }}">arrow_right_alt</mat-icon>
+        <mat-icon routerLink="{{ goal.id }}">arrow_right_alt</mat-icon>
       </button>
     </div>
     <div class="row middle-xs between-xs report-info">
