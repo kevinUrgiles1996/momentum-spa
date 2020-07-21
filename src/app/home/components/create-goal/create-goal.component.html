@@ -56,7 +56,14 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="primary" matStepperNext>Siguiente</button>
+          <button
+            [disabled]="firstFormGroup.invalid"
+            mat-raised-button
+            color="primary"
+            matStepperNext
+          >
+            Siguiente
+          </button>
         </mat-card-actions>
       </mat-card>
     </form>
@@ -78,32 +85,48 @@
                   <mat-option value="Semanalmente">Semanalmente</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label>Fecha de inicio</mat-label>
-                <input
-                  formControlName="startDate"
-                  matInput
-                  [matDatepicker]="startDatePicker"
-                />
+              <mat-form-field>
+                <mat-label>Selecciona el período de tu meta</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input
+                    matInput
+                    formControlName="startDate"
+                    matStartDate
+                    placeholder="Start date"
+                  />
+                  <input
+                    matInput
+                    formControlName="endDate"
+                    matEndDate
+                    placeholder="End date"
+                  />
+                </mat-date-range-input>
                 <mat-datepicker-toggle
                   matSuffix
-                  [for]="startDatePicker"
+                  [for]="picker"
                 ></mat-datepicker-toggle>
-                <mat-datepicker #startDatePicker></mat-datepicker>
+                <mat-date-range-picker #picker></mat-date-range-picker>
               </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label>Fecha de finalización</mat-label>
+              <p>Duración: <strong>12 días</strong></p>
+              <mat-form-field>
+                <mat-label>Mi compromiso empieza</mat-label>
+                <mat-select formControlName="startDateDay">
+                  <mat-option *ngFor="let date of startDateDays" value="date">{{
+                    date
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <p>Duración de la meta</p>
                 <input
-                  formControlName="endDate"
+                  formControlName="goalDurationDays"
+                  class="goalDurationDays"
                   matInput
-                  [matDatepicker]="endDatePicker"
+                  type="number"
                 />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="endDatePicker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #endDatePicker></mat-datepicker>
+                <strong>semana(s)</strong>
               </mat-form-field>
+              <p>Mis días de reporte serán los: <strong>Martes</strong></p>
             </div>
             <div class="col-xs-12 col-md-6">
               <img
@@ -116,20 +139,79 @@
             </div>
           </div>
         </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" matStepperPrevious>
+            Anterior
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="secondFormGroup.invalid"
+            matStepperNext
+          >
+            Siguiente
+          </button>
+        </mat-card-actions>
       </mat-card>
-
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Establece una apuesta</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Establece una apuesta</ng-template>
+      <mat-card>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-6 col-xs-12">
+              <mat-form-field>
+                <mat-label>Tipo de apuesta de mi meta</mat-label>
+                <mat-select formControlName="stakeType">
+                  <mat-option value="donacion"
+                    >Donación causa benéfica</mat-option
+                  >
+                  <mat-option value="sin_apuesta"
+                    >No involucro dinero</mat-option
+                  >
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Escoge la causa que quieres apoyar</mat-label>
+                <mat-select formControlName="cause">
+                  <mat-option *ngFor="let cause of causes" value="cause">{{
+                    cause
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Ingresa la cantidad de dinero que donarás</mat-label>
+                $<input
+                  class="quantity"
+                  matInput
+                  formControlName="quantity"
+                  type="number"
+                />
+                <span>x 5 semanas: <strong>$20</strong></span>
+              </mat-form-field>
+              <mat-checkbox matInput formControlName="accept"
+                >Acepto los términos y condiciones</mat-checkbox
+              >
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" matStepperPrevious>
+            Atrás
+          </button>
+          <button
+            [disabled]="thirdFormGroup.invalid"
+            mat-raised-button
+            color="accent"
+          >
+            Crear meta
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+
+    <div></div>
   </mat-step>
 </mat-horizontal-stepper>
