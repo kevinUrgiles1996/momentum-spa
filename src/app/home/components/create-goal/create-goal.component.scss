@@ -1,5 +1,5 @@
 mat-form-field {
-  width: 80%;
+  width: 100%;
 }
 .col-xs-12:nth-child(2) {
   text-align: center;
@@ -12,8 +12,43 @@ mat-form-field {
   width: 325px;
 }
 
-.goalDurationDays,
+.totalWeeks,
 .quantity {
   display: inline;
   width: 10%;
 }
+
+.quantity,
+.dollar-sign {
+  font-size: 25px;
+  color: blueviolet;
+}
+
+.debit-info {
+  color: red;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.col-xs-12:last-child {
+  display: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+// @media only screen and (max-width: 600px) {...}
+
+// /* Small devices (portrait tablets and large phones, 600px and up) */
+// @media only screen and (min-width: 600px) {...}
+
+// /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) {...}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .col-xs-12:last-child {
+    display: block;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {...}

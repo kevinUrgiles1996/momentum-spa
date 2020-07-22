@@ -11,7 +11,7 @@
             <div class="col-xs-12 col-md-6">
               <mat-form-field appearance="fill">
                 <mat-label>Categoría</mat-label>
-                <mat-select formControlName="category">
+                <mat-select formControlName="goalCategory">
                   <mat-option value="Relaciones personales y familia"
                     >Relaciones personales y familia</mat-option
                   >
@@ -36,7 +36,7 @@
                 <input
                   matInput
                   placeholder="Ej. Bajar 10 Kilos"
-                  formControlName="goal"
+                  formControlName="goalName"
                 />
               </mat-form-field>
               <mat-form-field>
@@ -44,14 +44,16 @@
                 <textarea
                   matInput
                   placeholder="Correr todos los días, mejorar mi dieta"
-                  formControlName="commitment"
+                  formControlName="goalDescription"
                   rows="15"
                 ></textarea>
               </mat-form-field>
             </div>
             <div class="col-xs-12 col-md-6">
               <img mat-card-image src="/assets/images/goals.png" alt="" />
-              <button mat-raised-button color="accent">Saber más</button>
+              <button mat-raised-button color="accent">
+                ¿Cómo defino bien una meta?
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -81,52 +83,52 @@
               <mat-form-field>
                 <mat-label>Me gustaría reportar</mat-label>
                 <mat-select formControlName="reportFrequency">
-                  <mat-option value="diariamente">Diariamente</mat-option>
-                  <mat-option value="Semanalmente">Semanalmente</mat-option>
+                  <mat-option value="daily">Diariamente</mat-option>
+                  <mat-option value="weekly">Semanalmente</mat-option>
                 </mat-select>
               </mat-form-field>
-              <mat-form-field>
-                <mat-label>Selecciona el período de tu meta</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
+              <div *ngIf="dailyReport">
+                <mat-form-field>
+                  <mat-label>Selecciona el período de tu meta</mat-label>
+                  <mat-date-range-input [rangePicker]="picker">
+                    <input matInput formControlName="startDate" matStartDate />
+                    <input matInput formControlName="endDate" matEndDate />
+                  </mat-date-range-input>
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+                <p>
+                  Duración: <strong>{{ totalDailyDays }} días</strong>
+                </p>
+              </div>
+              <div *ngIf="weeklyReport">
+                <mat-form-field>
+                  <mat-label>Mi compromiso empieza</mat-label>
+                  <mat-select formControlName="startingWeekDay">
+                    <mat-option
+                      *ngFor="let date of startingDates"
+                      [value]="date"
+                      >{{ date }}</mat-option
+                    >
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <p>Duración de la meta</p>
                   <input
+                    formControlName="totalWeeks"
+                    class="totalWeeks"
                     matInput
-                    formControlName="startDate"
-                    matStartDate
-                    placeholder="Start date"
+                    type="number"
                   />
-                  <input
-                    matInput
-                    formControlName="endDate"
-                    matEndDate
-                    placeholder="End date"
-                  />
-                </mat-date-range-input>
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-              </mat-form-field>
-              <p>Duración: <strong>12 días</strong></p>
-              <mat-form-field>
-                <mat-label>Mi compromiso empieza</mat-label>
-                <mat-select formControlName="startDateDay">
-                  <mat-option *ngFor="let date of startDateDays" value="date">{{
-                    date
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <p>Duración de la meta</p>
-                <input
-                  formControlName="goalDurationDays"
-                  class="goalDurationDays"
-                  matInput
-                  type="number"
-                />
-                <strong>semana(s)</strong>
-              </mat-form-field>
-              <p>Mis días de reporte serán los: <strong>Martes</strong></p>
+                  <strong>semana(s)</strong>
+                </mat-form-field>
+                <p>
+                  Mis día de reporte serán cada: <strong>{{ weekDay }}</strong>
+                </p>
+              </div>
             </div>
             <div class="col-xs-12 col-md-6">
               <img
@@ -135,7 +137,9 @@
                 src="/assets/images/calendar.jpg"
                 alt=""
               />
-              <!-- <button mat-raised-button color="accent">Saber más</button> -->
+              <button mat-raised-button color="accent">
+                ¿Qué es un reporte?
+              </button>
             </div>
           </div>
         </mat-card-content>
@@ -165,35 +169,74 @@
               <mat-form-field>
                 <mat-label>Tipo de apuesta de mi meta</mat-label>
                 <mat-select formControlName="stakeType">
-                  <mat-option value="donacion"
+                  <mat-option value="donation"
                     >Donación causa benéfica</mat-option
                   >
-                  <mat-option value="sin_apuesta"
-                    >No involucro dinero</mat-option
+                  <mat-option value="noStake"
+                    >No quiero involucrar dinero</mat-option
                   >
                 </mat-select>
               </mat-form-field>
-              <mat-form-field>
-                <mat-label>Escoge la causa que quieres apoyar</mat-label>
-                <mat-select formControlName="cause">
-                  <mat-option *ngFor="let cause of causes" value="cause">{{
-                    cause
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Ingresa la cantidad de dinero que donarás</mat-label>
-                $<input
-                  class="quantity"
-                  matInput
-                  formControlName="quantity"
-                  type="number"
-                />
-                <span>x 5 semanas: <strong>$20</strong></span>
-              </mat-form-field>
+              <div *ngIf="choosenStake === 'donation'">
+                <mat-form-field>
+                  <mat-label>Escoge la causa que quieres apoyar</mat-label>
+                  <mat-select formControlName="cause">
+                    <mat-option *ngFor="let cause of causes" value="cause">{{
+                      cause
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label
+                    >Ingresa la cantidad de dinero que donarás</mat-label
+                  >
+                  <span class="dollar-sign">$</span
+                  ><input
+                    class="quantity"
+                    matInput
+                    formControlName="quantity"
+                    type="number"
+                  />
+                </mat-form-field>
+                <div>
+                  <span *ngIf="dailyReport">
+                    <strong>
+                      ${{ moneyStake }} x {{ totalDailyDays }} días: ${{
+                        totalDonation
+                      }}
+                    </strong>
+                  </span>
+                  <span *ngIf="weeklyReport">
+                    <strong>
+                      ${{ moneyStake }} x {{ totalWeeks }} semanas: ${{
+                        totalDonation
+                      }}
+                    </strong>
+                  </span>
+                  <p class="debit-info" *ngIf="dailyReport">
+                    Se te debitará $<strong>{{ moneyStake }}</strong> cada vez
+                    que no cumplas con un reporte diario
+                  </p>
+                  <p class="debit-info" *ngIf="weeklyReport">
+                    Se te debitará $<strong>{{ moneyStake }}</strong> cada vez
+                    que no cumplas con un reporte semanal
+                  </p>
+                </div>
+              </div>
               <mat-checkbox matInput formControlName="accept"
                 >Acepto los términos y condiciones</mat-checkbox
               >
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <img
+                class="create-goal-img"
+                mat-card-image
+                src="/assets/images/kindness.jpg"
+                alt=""
+              />
+              <button mat-raised-button color="accent">
+                Conoce todas las causas
+              </button>
             </div>
           </div>
         </mat-card-content>
