@@ -28,7 +28,7 @@ export class CreateGoalComponent implements OnInit {
   weekDay: string;
   totalWeeks: number;
 
-  //
+  // To show how much money the user could donate to a cause
   choosenStake: string;
   moneyStake = 1;
   totalDonation: number;
