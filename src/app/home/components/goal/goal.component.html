@@ -37,6 +37,7 @@
         *ngIf="goal.nextReportDate == 'Hoy'"
         mat-raised-button
         color="accent"
+        routerLink="report/{{ goal.id }}"
       >
         Reportar
       </button>

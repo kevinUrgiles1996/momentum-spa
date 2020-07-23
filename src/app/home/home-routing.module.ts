@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { GoalDetailComponent } from './components/goal-detail/goal-detail.component';
 import { CreateGoalComponent } from './components/create-goal/create-goal.component';
+import { ReportComponent } from './components/report/report.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'create',
     component: CreateGoalComponent,
+  },
+  {
+    path: 'report/:goalId',
+    component: ReportComponent,
   },
   {
     path: ':goalId',

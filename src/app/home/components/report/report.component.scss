@@ -1,0 +1,61 @@
+.profile-header {
+  height: 200px;
+  width: 100%;
+  margin: 10px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-icon {
+  font-size: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div h2 {
+  text-align: center;
+}
+
+.chart-header {
+  margin: 5px 0;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-card {
+  width: 90%;
+  height: 100%;
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.mat-card-actions {
+  padding: 10px;
+}
+
+.report-container {
+  margin: 25px;
+}
+
+input[type="file"] {
+  margin: 6px 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .profile-header {
+    display: none;
+  }
+}

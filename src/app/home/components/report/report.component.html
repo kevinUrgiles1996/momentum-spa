@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-3 col-xs-12 middle-xs">
+    <div class="profile-header">
+      <mat-icon color="primary">account_circle</mat-icon>
+    </div>
+    <div>
+      <h2>Kevin Urgilés</h2>
+    </div>
+    <div class="chart-header">
+      <mat-card class="profile-card">
+        <mat-card-content>
+          <div class="chart-wrapper">
+            <canvas
+              baseChart
+              [data]="doughnutChartData"
+              [labels]="doughnutChartLabels"
+              [chartType]="doughnutChartType"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+        <mat-card-footer>
+          <p><strong>Tasa de éxito:</strong> 80%</p>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col-md-9 col-xs-12">
+    <div class="report-container">
+      <form [formGroup]="reportForm">
+        <mat-card>
+          <mat-card-title>
+            Reporte
+          </mat-card-title>
+          <mat-card-subtitle>
+            Leer 20 minutos
+          </mat-card-subtitle>
+          <mat-card-content>
+            <mat-form-field appearance="fill">
+              <mat-label>¿Tuviste éxito?</mat-label>
+              <mat-select formControlName="success">
+                <mat-option value="si">Si</mat-option>
+                <mat-option value="no">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="wasSuccessful">
+              <p>Agrega una foto como evidencia</p>
+              <input type="file" />
+            </div>
+            <div *ngIf="wasSuccessful">
+              <mat-form-field>
+                <mat-label>Agrega un comentario</mat-label>
+                <textarea
+                  formControlName="comment"
+                  matInput
+                  rows="7"
+                ></textarea>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="row">
+              <div class="col-xs-2 xs-offset-5">
+                <button mat-raised-button color="accent" type="submit">
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

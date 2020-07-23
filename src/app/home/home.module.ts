@@ -13,6 +13,7 @@ import { ChartsModule } from 'ng2-charts';
 import { CreateGoalComponent } from './components/create-goal/create-goal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { ReportComponent } from './components/report/report.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     GoalDetailComponent,
     GoalProgressComponent,
     CreateGoalComponent,
+    ReportComponent,
   ],
   imports: [
     CommonModule,

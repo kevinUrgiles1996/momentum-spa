@@ -20,3 +20,30 @@ a {
 .user-header-img {
   font-size: 40px;
 }
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.nav-menu-button {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-menu-button {
+    display: block;
+  }
+  .container {
+    display: none;
+  }
+
+  .tutorial-section {
+    display: none;
+    color: red;
+  }
+}

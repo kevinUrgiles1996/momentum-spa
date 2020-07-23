@@ -1,1 +1,14 @@
+.add-goal-section-mobile {
+  display: none;
+}
 
+@media only screen and (max-width: 800px) {
+  .tutorial-section,
+  .add-goal-section {
+    display: none;
+  }
+
+  .add-goal-section-mobile {
+    display: block;
+  }
+}
