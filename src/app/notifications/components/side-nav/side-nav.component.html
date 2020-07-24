@@ -1,0 +1,17 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <div>
+      <button routerLink="history" color="primary" mat-raised-button>
+        <mat-icon>library_books</mat-icon>
+        Reportes
+      </button>
+      <button routerLink="transactions" color="primary" mat-raised-button>
+        <mat-icon>attach_money</mat-icon>
+        Transacciones
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
