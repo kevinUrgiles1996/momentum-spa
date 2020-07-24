@@ -1,0 +1,62 @@
+<mat-card>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-xs-12">
+      <mat-card-title>
+        Crear Causa
+      </mat-card-title>
+      <form [formGroup]="causeForm">
+        <mat-card-content>
+          <mat-form-field>
+            <input
+              placeholder="Nombre de la Causa"
+              type="text"
+              formControlName="cause"
+              matInput
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Breve descripción de la causa</mat-label>
+            <textarea matInput formControlName="causeDescription"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              placeholder="Fundación o Institución beneficiada"
+              type="text"
+              formControlName="charity"
+              matInput
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label
+              >Número de personas que se pueden unir a la causa</mat-label
+            >
+            <input matInput formControlName="people" type="number" />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              placeholder="Recompensa"
+              type="text"
+              formControlName="reward"
+              matInput
+            />
+          </mat-form-field>
+          <div>
+            <input type="file" />
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" mat-raised-button color="accent">
+            Crear causa
+          </button>
+        </mat-card-actions>
+      </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12 image-container">
+      <img
+        mat-card-image
+        alt=""
+        src="https://eralberta.ca/wp-content/uploads/2019/05/placeholder-image-300x200.jpg"
+      />
+    </div>
+  </div>
+</mat-card>
