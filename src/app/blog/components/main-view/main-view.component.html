@@ -11,6 +11,6 @@
   <button mat-button (click)="buscarArticulo($event)"><mat-icon>search</mat-icon></button>
 </div>
 
-<div class="articles" *ngFor="let articulo of articulos">
+<div class="articles" *ngFor="let articulo of articulos" id="articulos">
   <app-article [article]=articulo></app-article>
 </div>

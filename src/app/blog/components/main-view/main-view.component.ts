@@ -8,37 +8,41 @@ import {Article} from '../article/article.model';
 })
 export class MainViewComponent implements OnInit{
 
-  articulos: Article[] = [
-    {
-      title: '5 Tips para alcanzar tus objetivos sin rendirte',
-      description: `The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.`,
-      author: 'Gary Barzola',
-      starts: 5,
-      date: '12/07/20',
-    },
-    {
-      title: 'Consejos para complir tus metas con éxito',
-      description: ` A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-      A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.`,
-      author: 'Juan Lara',
-      starts: 3,
-      date: '20/07/20',
-    },
-  ];
-
+  articulos: Article[];
   busqueda: any = '';
 
+  getArticulos(): void {
+    fetch('../../assets/articulos.json')
+      .then( response => {
+          return response.json();
+      })
+      .then( arreglo => {
+        this.articulos = arreglo;
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  }
+
   buscarArticulo(e: Event) {
-    console.log(this.busqueda);
+    e.preventDefault();
+    fetch('../../assets/articulos.json')
+      .then( response => {
+          return response.json();
+      })
+      .then( arreglo => {
+        const result = arreglo.filter(item => item.title.toLowerCase().includes(this.busqueda.trim().toLowerCase()));
+        result.length > 0 ?  this.articulos = result : alert(`No se encontraron articulos referentes a ${this.busqueda}`);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   }
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getArticulos();
   }
 
 }
