@@ -1,4 +1,4 @@
-$color-primary: #fed136;
+$color-primary: #3f51b5;
 
 .banner {
     display: flex;
@@ -16,6 +16,7 @@ $color-primary: #fed136;
     padding: 0 1rem;
     text-align: center;
     font-weight: bold;
+    color: white;
 }
 
 .btn {
@@ -29,6 +30,7 @@ $color-primary: #fed136;
     margin: 1rem auto;
     display: flex;
     align-items: center;
+    border: black;
 }
 
 input {

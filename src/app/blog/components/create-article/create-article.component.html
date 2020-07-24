@@ -1,0 +1,57 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Informacion del articulo</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Titulo" formControlName="title">
+            <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
+              Descripción <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Nombre" formControlName="firstName" name="firstName">
+            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+              Nombre es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Apellido" formControlName="lastName">
+            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+              Apellido es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Descripcion" formControlName="description"></textarea>
+            <mat-error *ngIf="addressForm.controls['description'].hasError('required')">
+              Descripción <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row between-xs">
+        <p></p> <!--AUTHOR -->
+        <p><strong>Día: </strong>{{date}}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row around-xs">
+        <button mat-raised-button routerLink="/blog" color="basic">Cancelar</button>
+        <button mat-raised-button color="primary">Crear Articulo</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

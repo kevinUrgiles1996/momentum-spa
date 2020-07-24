@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BannerComponent } from './components/banner/banner.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import { CreateArticleComponent } from './components/create-article/create-article.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: BannerComponent,
+    component: MainViewComponent,
+  },
+  {
+    path: 'create',
+    component: CreateArticleComponent,
   }
 ];
 
