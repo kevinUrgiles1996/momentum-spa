@@ -1,0 +1,21 @@
+mat-form-field {
+  // width: 50%;
+  display: block;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  display: none;
+  max-width: 300px;
+}
+
+@media only screen and (min-width: 992px) {
+  img {
+    display: block;
+  }
+}
