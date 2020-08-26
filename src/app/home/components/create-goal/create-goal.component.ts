@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
+
+import { GoalService } from '@core/services/goal/goal.service';
 import * as moment from 'moment';
 
 @Component({
@@ -43,7 +46,10 @@ export class CreateGoalComponent implements OnInit {
     'Por una educación más justa',
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private goalService: GoalService
+  ) {}
 
   ngOnInit() {
     moment.locale('es');

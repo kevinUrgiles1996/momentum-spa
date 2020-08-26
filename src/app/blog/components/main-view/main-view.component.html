@@ -1,16 +1,22 @@
-<div class="banner" >
-  <p class="title">Escribe notas sobre como superar tus metas</p>
-  <button mat-raised-button class="btn" color="accent" routerLink="create">
-    <mat-icon aria-label="icono para agregar una nota">add_circle_outline</mat-icon>
-    Agregar publicación
-  </button>
-</div>
-
-<div class="search">
-  <input matInput placeholder="Encuentra el tema de tu interes" type="search" [(ngModel)]="busqueda"/>
-  <button mat-button (click)="buscarArticulo($event)"><mat-icon>search</mat-icon></button>
+<div class="row">
+  <div class="col-md-5 col-xs-10 search">
+    <input
+      matInput
+      placeholder="Encuentra el tema de tu interes"
+      type="search"
+      [(ngModel)]="busqueda"
+    />
+    <button mat-button (click)="buscarArticulo($event)">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div class="col-md-1 col-xs-2 createButton">
+    <button routerLink="create" id="step4" mat-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>
 
 <div class="articles" *ngFor="let articulo of articulos" id="articulos">
-  <app-article [article]=articulo></app-article>
+  <app-article [article]="articulo"></app-article>
 </div>

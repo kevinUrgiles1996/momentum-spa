@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
 
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 import { NavComponent } from './components/nav/nav.component';
 import { CausesComponent } from './components/causes/causes.component';

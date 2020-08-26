@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+  <div class="row center-lg center-md center-xs login-container">
+    <div class="col-lg-6 col-md-8 col-xs-12">
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser($event)">
+        <mat-card>
+          <h1>Iniciar Sesión</h1>
+          <mat-card-content>
+            <div class="row">
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Correo electrónico"
+                  formControlName="email"
+                  type="email"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field>
+                <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="password">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </mat-form-field>
+            </div>
+            <span class="invalid-text" *ngIf="invalid" >{{ invalidMessage }}</span>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="loginForm.invalid"
+            >
+              Iniciar Sesión
+            </button>
+            <p>¿No tienes una cuenta?<a routerLink="/auth/register" color="primary" mat-button>Regístrate</a></p>
+            <a class="password-reset" color="primary" mat-button routerLink="/auth/reset/" >¿Olvidaste tu contraseña?</a>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+
+</div>
+

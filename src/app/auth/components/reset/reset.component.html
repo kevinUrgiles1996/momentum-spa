@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+  <div class="row center-lg center-md center-xs login-container">
+    <div class="col-lg-6 col-md-8 col-xs-12">
+      <form [formGroup]="resetForm" (ngSubmit)="resetPassword($event)">
+        <mat-card>
+          <h1>Actualizar contraseña</h1>
+          <mat-card-content>
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Correo electrónico"
+                  formControlName="email"
+                  type="email"
+                />
+              </mat-form-field>
+
+            <p class="invalid-text" *ngIf="invalid" >{{ invalidMessage }}</p>
+            <p class="valid-text" *ngIf="!invalid" >{{ successMessage }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="resetForm.invalid"
+            >
+              Actualizar contraseña
+            </button>
+            <p>¿No tienes una cuenta?<a routerLink="/auth/register" color="primary" mat-button>Regístrate</a></p>
+            <p>También puedes
+              <a class="password-reset" color="primary" mat-button routerLink="/auth/login" >Iniciar sesión</a>
+            </p>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+
+</div>
+

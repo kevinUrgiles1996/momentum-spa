@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@core/services/auth/auth.service';
+import { GoalService } from '@core/services/goal/goal.service';
 import * as introJs from 'intro.js/intro.js';
 
 @Component({
@@ -7,9 +9,17 @@ import * as introJs from 'intro.js/intro.js';
   styleUrls: ['./main-view.component.scss'],
 })
 export class MainViewComponent implements OnInit {
+  user: any;
+  goals: any;
+  activeGoals = [];
+  inactiveGoals = [];
+  successfulGoals = 0;
+  totalGoals = 0;
   introJS = introJs();
-
-  constructor() {
+  constructor(
+    private authService: AuthService,
+    private goalService: GoalService
+  ) {
     this.introJS.setOptions({
       steps: [
         {
@@ -47,9 +57,41 @@ export class MainViewComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.getUserInfo()
+      .subscribe((result: any) => {
+        const { data, success } = result;
+        if (success){
+          this.user = data;
+        }
+      });
+
+    this.goalService.getUserGoals()
+      .subscribe((result: any) => {
+        const { data, success } = result;
+        if (success){
+          this.goals = data;
+          this.calculateGoals(this.goals);
+        }
+      });
+  }
 
   startTutorial() {
     this.introJS.start();
+  }
+
+  calculateGoals(goals: any[]){
+    goals.forEach((goal) => {
+      const { successful, active } = goal;
+      if (successful){
+        this.successfulGoals += 1;
+      }
+      if (active){
+        this.activeGoals.push(goal);
+      } else {
+        this.inactiveGoals.push(goal);
+      }
+      this.totalGoals += 1;
+    });
   }
 }
