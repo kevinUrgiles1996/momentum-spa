@@ -15,6 +15,15 @@ export class GoalService {
     private http: HttpClient,
   ) { }
 
+  getPosts(){
+    console.log(`${environment.urlApi}/posts`);
+    return this.http
+      .get(`${environment.urlApi}/posts`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getUserGoals(){
     return this.http
       .get(`${environment.urlApi}/goals`)

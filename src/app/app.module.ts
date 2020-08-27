@@ -14,6 +14,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@core/services/auth.interceptor';
 import { JwtHelperService  } from '@auth0/angular-jwt';
 
+import { environment } from 'environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -25,7 +30,9 @@ import { JwtHelperService  } from '@auth0/angular-jwt';
     ChartsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
   providers: [
     {

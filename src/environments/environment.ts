@@ -5,6 +5,15 @@
 export const environment = {
   production: false,
   urlApi: 'http://localhost:3000/api/v1',
+  firebaseConfig: {
+    apiKey: 'AIzaSyCcGGT2poGjXDr7bs6nmjn0tkqRVq3LmcA',
+    authDomain: 'momentum-98ba2.firebaseapp.com',
+    databaseURL: 'https://momentum-98ba2.firebaseio.com',
+    projectId: 'momentum-98ba2',
+    storageBucket: 'momentum-98ba2.appspot.com',
+    messagingSenderId: '549784016624',
+    appId: '1:549784016624:web:48fa67008abd37177d1435'
+  }
 };
 
 /*

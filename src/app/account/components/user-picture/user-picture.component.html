@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row center-xs">
+    <div class="col-xs-10 ">
+        <mat-card>
+          <mat-card-title>Foto de perfil</mat-card-title>
+          <mat-card-content>
+            <p>Seleccciona una imagen</p>
+            <p>Archivos con formato <strong>png, jpg y jpeg</strong> son los únicos formatos válidos</p>
+            <input type="file" name="imageFile" id="" (change)="validateFile($event)" >
+            <p class="error-message" *ngIf="!valid && errorMessage">{{ errorMessage }}</p>
+            <p class="success-message" *ngIf="succesMessage" >{{ succesMessage }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+              <button [disabled]="!valid"  (click)="uploadFile($event)"  mat-raised-button color="accent">Subir</button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>
+</div>

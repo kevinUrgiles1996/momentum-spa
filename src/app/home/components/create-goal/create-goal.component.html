@@ -59,6 +59,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button
+            (click)="getFirstGroupValues()"
             [disabled]="firstFormGroup.invalid"
             mat-raised-button
             color="primary"
@@ -148,9 +149,10 @@
             Anterior
           </button>
           <button
+            (click)="getSecondGroupValues()"
+            [disabled]="secondFormGroup.invalid"
             mat-raised-button
             color="primary"
-            [disabled]="secondFormGroup.invalid"
             matStepperNext
           >
             Siguiente
@@ -181,7 +183,7 @@
                 <mat-form-field>
                   <mat-label>Escoge la causa que quieres apoyar</mat-label>
                   <mat-select formControlName="cause">
-                    <mat-option *ngFor="let cause of causes" value="cause">{{
+                    <mat-option *ngFor="let cause of causes" [value]="cause">{{
                       cause
                     }}</mat-option>
                   </mat-select>
@@ -245,6 +247,7 @@
             Atrás
           </button>
           <button
+            (click)="getThirdGroupValues()"
             [disabled]="thirdFormGroup.invalid"
             mat-raised-button
             color="accent"

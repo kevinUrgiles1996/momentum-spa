@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-interface User {
-
-}
+import { User } from '@core/interfaces/user.interface';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +9,7 @@ interface User {
 })
 export class UserComponent implements OnInit {
 
-  @Input() user: any;
+  @Input() user: User;
   @Input() successfulGoals: number;
   @Input() totalGoals: number;
 

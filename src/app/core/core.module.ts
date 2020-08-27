@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth/auth.service';
 import { TokenService } from './services/token/token.service';
 import { GoalService } from './services/goal/goal.service';
-
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [],
@@ -14,7 +14,8 @@ import { GoalService } from './services/goal/goal.service';
   providers: [
     AuthService,
     TokenService,
-    GoalService
+    GoalService,
+    UserService
   ]
 })
 export class CoreModule { }

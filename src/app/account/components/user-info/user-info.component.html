@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row center-xs">
+    <div class="col-xs-10">
+      <form [formGroup]="editUserForm" (ngSubmit)="updateUser($event)" >
+        <mat-card>
+          <mat-card-title>Información personal</mat-card-title>
+          <mat-card-content>
+            <mat-form-field>
+              <input formControlName="name" matInput type="text" placeholder="Nombre" >
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Género</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="male">
+                  Masculino
+                </mat-option>
+                <mat-option value="female">
+                  Femenino
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="email" placeholder="Correo electrónico" formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+              <textarea matInput placeholder="Acerca de mi" cols="30" rows="10" formControlName="about" ></textarea>
+            </mat-form-field>
+            <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+            <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button 
+              [disabled]="editUserForm.invalid"
+              mat-raised-button
+              color="accent" 
+              type="submit">
+              Actualizar datos
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

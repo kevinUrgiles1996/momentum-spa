@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
-
+import { Goal, reportFrequency } from '@core/interfaces/goal.interface';
 import { GoalService } from '@core/services/goal/goal.service';
 import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-create-goal',
@@ -18,6 +19,16 @@ import * as moment from 'moment';
   ],
 })
 export class CreateGoalComponent implements OnInit {
+
+  newGoal: Goal = {
+    name: '',
+    category: '',
+    description: '',
+    reportFrequency: reportFrequency.daily,
+    startDate: new Date(),
+    endDate: new Date(),
+  };
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -77,6 +88,7 @@ export class CreateGoalComponent implements OnInit {
 
     this.secondFormGroup.valueChanges.subscribe((changes) => {
       const {
+        // tslint:disable-next-line: no-shadowed-variable
         reportFrequency,
         startDate,
         endDate,
@@ -129,4 +141,31 @@ export class CreateGoalComponent implements OnInit {
       currentDay = currentDay.add('1', 'day');
     }
   }
+
+  // Handling submitions
+
+  getFirstGroupValues(){
+    const { goalName, goalCategory, goalDescription } = this.firstFormGroup.value;
+    this.newGoal.name = goalName;
+    this.newGoal.category = goalCategory;
+    this.newGoal.description = goalDescription;
+  }
+
+  getSecondGroupValues(){
+    const { reportFrequency, startDate, endDate } = this.secondFormGroup.value;
+    this.newGoal.reportFrequency = reportFrequency;
+    this.newGoal.startDate = startDate;
+    this.newGoal.endDate = endDate;
+  }
+
+  getThirdGroupValues(){
+    const { quantity, cause } = this.thirdFormGroup.value;
+    this.newGoal.moneyStake = quantity;
+    this.newGoal.cause = '5c8a1d5b0190b214360dc036';
+    this.goalService.createGoal(this.newGoal)
+      .subscribe((result) => {
+        console.log(result);
+      })
+  }
+
 }

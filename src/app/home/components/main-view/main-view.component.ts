@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/services/auth/auth.service';
 import { GoalService } from '@core/services/goal/goal.service';
+
 import * as introJs from 'intro.js/intro.js';
+
+import { Goal } from '@core/interfaces/goal.interface';
+import { User } from '@core/interfaces/user.interface';
 
 @Component({
   selector: 'app-main-view',
@@ -9,13 +13,14 @@ import * as introJs from 'intro.js/intro.js';
   styleUrls: ['./main-view.component.scss'],
 })
 export class MainViewComponent implements OnInit {
-  user: any;
-  goals: any;
-  activeGoals = [];
-  inactiveGoals = [];
+  user: User;
+  goals: Goal[];
+  activeGoals: Goal[] = [];
+  inactiveGoals: Goal[] = [];
   successfulGoals = 0;
   totalGoals = 0;
   introJS = introJs();
+
   constructor(
     private authService: AuthService,
     private goalService: GoalService
@@ -59,28 +64,34 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getUserInfo()
-      .subscribe((result: any) => {
+      .subscribe((result: { success: boolean, data: User }) => {
         const { data, success } = result;
         if (success){
           this.user = data;
         }
       });
 
+    this.goalService.getPosts()
+      .subscribe(a => {
+        console.log('aaaaaaaaaaaaaa');
+        console.log(a);
+      })
+
     this.goalService.getUserGoals()
-      .subscribe((result: any) => {
+      .subscribe((result: { success: boolean, data: Goal[] }) => {
         const { data, success } = result;
         if (success){
           this.goals = data;
           this.calculateGoals(this.goals);
         }
       });
+
+
   }
 
-  startTutorial() {
-    this.introJS.start();
-  }
 
-  calculateGoals(goals: any[]){
+
+  calculateGoals(goals: Goal[]){
     goals.forEach((goal) => {
       const { successful, active } = goal;
       if (successful){
@@ -94,4 +105,9 @@ export class MainViewComponent implements OnInit {
       this.totalGoals += 1;
     });
   }
+
+  startTutorial() {
+    this.introJS.start();
+  }
+
 }
