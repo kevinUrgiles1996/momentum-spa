@@ -3,6 +3,8 @@ $color-accent: #f55081;
 
 mat-card-title {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 mat-card-title a {
@@ -24,10 +26,11 @@ mat-card-title:hover a {
   align-items: center;
 }
 
-.like:hover {
+.like:hover, .delete:hover {
   cursor: pointer;
   color: $color-accent;
 }
+
 
 .card-footer {
   display: flex;

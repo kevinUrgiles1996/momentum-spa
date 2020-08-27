@@ -1,7 +1,7 @@
 export interface Article{
     title: string;
-    description: string;
-    author: string;
-    starts: number;
-    date: string;
+    content: string;
+    likes: number;
+    imageURL: string;
+    user: any;
 }

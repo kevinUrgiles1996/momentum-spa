@@ -1,22 +1,33 @@
-<div class="row">
-  <div class="col-md-5 col-xs-10 search">
-    <input
-      matInput
-      placeholder="Encuentra el tema de tu interes"
-      type="search"
-      [(ngModel)]="busqueda"
-    />
-    <button mat-button (click)="buscarArticulo($event)">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
-  <div class="col-md-1 col-xs-2 createButton">
-    <button routerLink="create" id="step4" mat-fab color="accent">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-</div>
+<mat-tab-group>
+  <!-- Publicaciones generales -->
+  <mat-tab label="Generales">
+    <div class="row">
+      <div class="col-md-5 col-xs-10 search">
+        <input
+          matInput
+          placeholder="Encuentra el tema de tu interes"
+          type="search"
+          [(ngModel)]="busqueda"
+        />
+        <button mat-button (click)="buscarArticulo($event)">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="articles" *ngFor="let articulo of posts" id="articulos">
+      <app-article [article]="articulo"></app-article>
+    </div>
+  </mat-tab>
 
-<div class="articles" *ngFor="let articulo of articulos" id="articulos">
-  <app-article [article]="articulo"></app-article>
-</div>
+  <!-- Publicaciones del usuario -->
+  <mat-tab label="Mis publicaciones">
+    <!-- <div class="col-md-1 col-xs-2 createButton"> -->
+      <button routerLink="create" id="step4" mat-fab color="accent">
+        <mat-icon>add</mat-icon>
+      </button>
+    <!-- </div> -->
+    <div class="articles" *ngFor="let articulo of postsUser" id="articulos">
+      <app-article [article]="articulo" [delete]=true></app-article>
+    </div>
+  </mat-tab>
+</mat-tab-group>

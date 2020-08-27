@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Article} from '../article/article.model';
+import { PostService } from '@core/services/post/post.service';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
   selector: 'app-banner',
@@ -8,20 +10,31 @@ import {Article} from '../article/article.model';
 })
 export class MainViewComponent implements OnInit{
 
-  articulos: Article[];
+  posts: Article[];
+  postsUser: Article[];
   busqueda: any = '';
 
-  getArticulos(): void {
-    fetch('../../assets/articulos.json')
-      .then( response => {
-          return response.json();
-      })
-      .then( arreglo => {
-        this.articulos = arreglo;
-      })
-      .catch(err => {
-        console.log(err.message);
+  constructor(private postService: PostService) {}
+
+  ngOnInit(): void {
+
+    this.postService.getPosts()
+      .subscribe((result: any) => {
+        const { data, success } = result;
+        if (success){
+          this.posts = data;
+        }
       });
+
+    this.postService.getUserPosts()
+      .subscribe((result: any) => {
+        const { data, success } = result;
+        if(success) {
+          console.log(data);
+          this.postsUser = data;
+        }
+      });
+
   }
 
   buscarArticulo(e: Event) {
@@ -32,17 +45,11 @@ export class MainViewComponent implements OnInit{
       })
       .then( arreglo => {
         const result = arreglo.filter(item => item.title.toLowerCase().includes(this.busqueda.trim().toLowerCase()));
-        result.length > 0 ?  this.articulos = result : alert(`No se encontraron articulos referentes a ${this.busqueda}`);
+        result.length > 0 ?  this.posts = result : alert(`No se encontraron articulos referentes a ${this.busqueda}`);
       })
       .catch(err => {
         console.log(err.message);
       });
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.getArticulos();
   }
 
 }
