@@ -2,7 +2,7 @@
   <mat-card-title>
     <p (click)="openDialog()">{{ post.title }}</p>
     <div *ngIf="edit" >
-      <mat-icon class="edit">edit</mat-icon>
+      <mat-icon class="edit" (click)="editPost()">edit</mat-icon>
     </div>  
   </mat-card-title>
   <mat-card-content class="card-content">

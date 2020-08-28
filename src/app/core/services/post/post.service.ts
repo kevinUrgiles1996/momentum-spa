@@ -38,6 +38,12 @@ export class PostService {
       .pipe(catchError(this.handleError));
   }
 
+  updatePost(postId: string, newPost: any) {
+    return this.http
+      .patch(`${environment.urlApi}/posts/${postId}`, newPost)
+      .pipe(catchError(this.handleError));
+  }
+
   deletePost(postId: string) {
     return this.http
       .delete(`${environment.urlApi}/posts/${postId}`)

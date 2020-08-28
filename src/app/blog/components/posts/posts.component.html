@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-5 col-xs-10 search">
+    <input
+      matInput
+      placeholder="Encuentra una publicación que te motive"
+      type="search"
+      [(ngModel)]="busqueda"
+    />
+    <button mat-button (click)="buscarArticulo($event)">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="posts" *ngFor="let post of posts">
+  <app-post [post]="post"></app-post>
+</div>

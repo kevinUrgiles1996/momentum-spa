@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import * as moment from 'moment';
 import { PostService } from '@core/services/post/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -11,6 +12,8 @@ import { PostService } from '@core/services/post/post.service';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent implements OnInit {
+  postToUpdate: any;
+
   addressForm = this.fb.group({
     title: [null, Validators.required],
     content: [null, Validators.required],
@@ -26,6 +29,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private postService: PostService,
     private toastr: ToastrService
@@ -39,10 +43,10 @@ export class CreatePostComponent implements OnInit {
     this.toastr.error(msg);
   }
 
-  setForm() {
-    this.addressForm.value.title = '';
-    this.addressForm.value.content = '';
-  }
+  // setForm() {
+  //   this.title = '';
+  //   this.content = '';
+  // }
 
   onSubmit(formValue: any) {
     const { title, content } = formValue;
@@ -51,14 +55,12 @@ export class CreatePostComponent implements OnInit {
         const { data, success } = result;
         if (success) {
           this.showSuccess('Publicación creada');
-          console.log(formValue.value);
-          this.setForm();
-        }else{
+          this.router.navigate(['blog/me']);
+        } else {
           this.showError('Error al crear la publicación');
         }
       });
-    }
-    else{
+    } else {
       this.showError('Llene todos los campos!');
     }
   }

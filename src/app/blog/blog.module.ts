@@ -15,9 +15,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostsUserComponent } from './components/posts-user/posts-user.component';
+import { PostUpdateComponent } from './components/post-update/post-update.component';
 
 @NgModule({
-  declarations: [MainViewComponent, PostComponent, CreatePostComponent, PostDetailComponent],
+  declarations: [MainViewComponent, PostComponent, CreatePostComponent, PostDetailComponent, PostsComponent, PostsUserComponent, PostUpdateComponent],
   imports: [
     CommonModule,
     BlogRoutingModule,

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Actualizar publicación</h2>
+<mat-dialog-content class="mat-dialog-content mat-typography">
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Título</mat-label>
+    <input matInput placeholder="Placeholder" [(ngModel)]="data.title"/>
+  </mat-form-field>
+  <mat-form-field class="w-100" appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput placeholder="Placeholder" [(ngModel)]="data.content"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="mat-dialog-actions">
+  <button mat-flat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button (click)="updatePost()" color="accent">
+    Actualizar publicación
+  </button>
+</mat-dialog-actions>

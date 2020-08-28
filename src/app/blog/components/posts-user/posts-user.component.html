@@ -1,0 +1,11 @@
+<div class="t-row t-center">
+  <p *ngIf="lenghtPostUser > 0; else elseBlock">
+    Aquí podrás revisar todas las publicaciones que haz realizado
+  </p>
+  <ng-template #elseBlock
+    >No haz realizado ninguna publicación todavía.</ng-template
+  >
+</div>
+<div class="posts" *ngFor="let post of postsUser">
+  <app-post [post]="post" [edit]="true"></app-post>
+</div>
