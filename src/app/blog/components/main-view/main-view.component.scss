@@ -36,12 +36,21 @@ input:focus {
   outline: none;
 }
 
-.articles {
+.posts {
   padding: 5px;
 }
 
 .createButton {
   display: none;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.t-row {
+  margin: 1rem auto;
+  color: gray;
 }
 
 @media (min-width: 600px) {

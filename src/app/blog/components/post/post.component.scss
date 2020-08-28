@@ -7,16 +7,17 @@ mat-card-title {
   justify-content: space-between;
 }
 
-mat-card-title a {
+mat-card-title p {
   text-decoration: none;
   color: black;
 }
 
-mat-card-title:hover a {
+mat-card-title:hover p {
   color: $color-primary;
+  cursor: pointer;
 }
 
-.article {
+.post {
   margin-bottom: 1rem;
 }
 
@@ -26,11 +27,15 @@ mat-card-title:hover a {
   align-items: center;
 }
 
-.like:hover, .delete:hover {
+.like:hover {
   cursor: pointer;
   color: $color-accent;
 }
 
+.edit:hover {
+  cursor: pointer;
+  color: $color-primary;
+}
 
 .card-footer {
   display: flex;
@@ -38,6 +43,7 @@ mat-card-title:hover a {
   align-items: center;
   color: lightslategray;
 }
+
 
 @media (min-width: 600px) {
   .card-content {

@@ -1,23 +1,23 @@
-<mat-card class="article">
+<mat-card class="post">
   <mat-card-title>
-    <a href="">{{ article.title }}</a>
-    <div *ngIf="delete">
-      <mat-icon class="delete">delete</mat-icon>
+    <p (click)="openDialog()">{{ post.title }}</p>
+    <div *ngIf="edit" >
+      <mat-icon class="edit">edit</mat-icon>
     </div>  
   </mat-card-title>
   <mat-card-content class="card-content">
     <p>
-      {{ article.content }}
+      {{ post.content }}
     </p>
   </mat-card-content>
   <mat-card-footer class="card-footer">
-    <!-- <p>{{ article.author }}</p> -->
-    <!-- <p>{{ article.date }}</p> -->
+    <!-- <p>{{ post.author }}</p> -->
+    <!-- <p>{{ post.date }}</p> -->
     <p>author</p>
     <p>date</p>
     <div class="likes">
       <mat-icon class="like">favorite_border</mat-icon>
-      {{ article.likes }}
+      {{ post.likes }}
     </div>
   </mat-card-footer>
 </mat-card>

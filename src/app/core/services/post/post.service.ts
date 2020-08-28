@@ -13,16 +13,16 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   // Get all posts
-  getPosts() {
+  getPostsAll() {
     return this.http
-      .get(`${environment.urlApi}/posts`)
+      .get(`${environment.urlApi}/posts/all`)
       .pipe(catchError(this.handleError));
   }
 
   // Get posts for userId
   getUserPosts() {
     return this.http
-      .get(`${environment.urlApi}/posts/userposts`)
+      .get(`${environment.urlApi}/posts`)
       .pipe(catchError(this.handleError));
   }
 

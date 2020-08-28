@@ -10,6 +10,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@core/services/auth.interceptor';
 import { JwtHelperService  } from '@auth0/angular-jwt';
@@ -25,7 +27,8 @@ import { JwtHelperService  } from '@auth0/angular-jwt';
     ChartsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

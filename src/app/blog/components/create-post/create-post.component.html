@@ -1,0 +1,38 @@
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Informacion de la publicación</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Titulo" formControlName="title" >
+            <mat-error *ngIf="addressForm.controls['title'].hasError('required')">
+              Descripción <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Descripcion" formControlName="content" min-height="200px"></textarea>
+            <mat-error *ngIf="addressForm.controls['content'].hasError('required')">
+              Descripción <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row between-xs">
+        <p></p> <!--AUTHOR -->
+        <p><strong>Día: </strong>{{date}}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="row around-xs">
+        <button mat-raised-button color="primary">Crear publicación</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

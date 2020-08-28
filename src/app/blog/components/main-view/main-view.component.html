@@ -1,6 +1,16 @@
+<!-- <nav mat-tab-nav-bar>
+  <a mat-tab-link
+  *ngFor="let link of navLinks"
+  [routerLink]="link.link"
+  routerLinkActive #rla="routerLinkActive"
+  [active]="rla.isActive">
+ {{link.label}}
+</a>
+</nav>
+<router-outlet></router-outlet> -->
+
 <mat-tab-group>
-  <!-- Publicaciones generales -->
-  <mat-tab label="Generales">
+  <mat-tab label="Publicaciones">
     <div class="row">
       <div class="col-md-5 col-xs-10 search">
         <input
@@ -14,20 +24,22 @@
         </button>
       </div>
     </div>
-    <div class="articles" *ngFor="let articulo of posts" id="articulos">
-      <app-article [article]="articulo"></app-article>
+    <div class="posts" *ngFor="let post of posts">
+      <app-post [post]="post"></app-post>
     </div>
   </mat-tab>
 
-  <!-- Publicaciones del usuario -->
   <mat-tab label="Mis publicaciones">
-    <!-- <div class="col-md-1 col-xs-2 createButton"> -->
-      <button routerLink="create" id="step4" mat-fab color="accent">
-        <mat-icon>add</mat-icon>
-      </button>
-    <!-- </div> -->
-    <div class="articles" *ngFor="let articulo of postsUser" id="articulos">
-      <app-article [article]="articulo" [delete]=true></app-article>
+    <div class="t-row t-center">
+      <p  *ngIf="postsUser.length > 0; else elseBlock">Aquí podrás revisar todas las publicaciones que haz realizado</p>
+      <ng-template #elseBlock>No haz realizado ninguna publicación todavía.</ng-template>
     </div>
+    <div class="posts" *ngFor="let post of postsUser">
+      <app-post [post]="post" [edit]=true></app-post>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Crear una publicación" id="step4" routerLink="create">
+    <app-create-post></app-create-post>
   </mat-tab>
 </mat-tab-group>
