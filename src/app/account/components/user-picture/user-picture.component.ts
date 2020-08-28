@@ -16,6 +16,7 @@ export class UserPictureComponent implements OnInit {
   imageFile: File;
   errorMessage: string;
   succesMessage: string;
+  urlImage: string;
 
   constructor(
     private storage: AngularFireStorage,
@@ -38,6 +39,7 @@ export class UserPictureComponent implements OnInit {
   }
 
   uploadFile(event: Event){
+    this.urlImage = './../../../../assets/images/spinner.gif';
     event.preventDefault();
     if (this.valid){
       const dir = `images/profile/${this.imageFile.name}`;
@@ -53,6 +55,10 @@ export class UserPictureComponent implements OnInit {
                   this.userService.updateUserDetails({ profileUrl: url })
                     .subscribe((result) => console.log(result));
                   this.succesMessage = 'Tu foto de perfil ha sido actualizada correctamente';
+                  setTimeout(() => this.succesMessage = '', 3000);
+                  this.urlImage = '';
+                  document.querySelector('input').value = null;
+                  this.valid = false;
                 }
               });
           })

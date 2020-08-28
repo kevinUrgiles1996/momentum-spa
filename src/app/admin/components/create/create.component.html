@@ -4,25 +4,25 @@
       <mat-card-title>
         Crear Causa
       </mat-card-title>
-      <form [formGroup]="causeForm">
+      <form [formGroup]="causeForm" (ngSubmit)="createCause($event)" >
         <mat-card-content>
           <mat-form-field>
             <input
               placeholder="Nombre de la Causa"
               type="text"
-              formControlName="cause"
+              formControlName="name"
               matInput
             />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Breve descripción de la causa</mat-label>
-            <textarea matInput formControlName="causeDescription"></textarea>
+            <textarea matInput formControlName="description" rows="8" ></textarea>
           </mat-form-field>
           <mat-form-field>
             <input
               placeholder="Fundación o Institución beneficiada"
               type="text"
-              formControlName="charity"
+              formControlName="charityName"
               matInput
             />
           </mat-form-field>
@@ -30,7 +30,7 @@
             <mat-label
               >Número de personas que se pueden unir a la causa</mat-label
             >
-            <input matInput formControlName="people" type="number" />
+            <input matInput formControlName="peopleLimit" type="number" />
           </mat-form-field>
           <mat-form-field>
             <input
@@ -41,11 +41,17 @@
             />
           </mat-form-field>
           <div>
-            <input type="file" />
+            <input type="file" (change)="uploadFile($event)"/>
           </div>
+          <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+          <p class="error-message" *ngIf="errorMessage" >{{ errorMessage }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button type="submit" mat-raised-button color="accent">
+          <button
+            [disabled]="causeForm.invalid"
+            type="submit" 
+            mat-raised-button 
+            color="accent">
             Crear causa
           </button>
         </mat-card-actions>
@@ -54,8 +60,8 @@
     <div class="col-lg-6 col-md-6 col-xs-12 image-container">
       <img
         mat-card-image
-        alt=""
-        src="https://eralberta.ca/wp-content/uploads/2019/05/placeholder-image-300x200.jpg"
+        alt="Cause image"
+        [src]="urlImage"
       />
     </div>
   </div>

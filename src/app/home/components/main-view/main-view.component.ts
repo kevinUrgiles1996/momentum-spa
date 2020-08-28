@@ -71,12 +71,6 @@ export class MainViewComponent implements OnInit {
         }
       });
 
-    this.goalService.getPosts()
-      .subscribe(a => {
-        console.log('aaaaaaaaaaaaaa');
-        console.log(a);
-      })
-
     this.goalService.getUserGoals()
       .subscribe((result: { success: boolean, data: Goal[] }) => {
         const { data, success } = result;

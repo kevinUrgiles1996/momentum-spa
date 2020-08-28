@@ -4,7 +4,10 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { Goal, reportFrequency } from '@core/interfaces/goal.interface';
 import { GoalService } from '@core/services/goal/goal.service';
+import { CauseService } from '@core/services/cause/cause.service';
+import { Cause } from '@core/interfaces/cause.interface';
 import * as moment from 'moment';
+import { CanColor } from '@angular/material/core';
 
 
 @Component({
@@ -49,42 +52,17 @@ export class CreateGoalComponent implements OnInit {
 
   today: any;
   startingDates: any[] = [];
-  causes: string[] = [
-    'Solca niños contra el cancer',
-    'Por una ciudad sin personas en la calle',
-    'Amigos de 4 patas',
-    'Juntos contra la pobreza',
-    'Por una educación más justa',
-  ];
+  causes: Cause[];
 
   constructor(
     private formBuilder: FormBuilder,
-    private goalService: GoalService
-  ) {}
+    private goalService: GoalService,
+    private causeService: CauseService,
+  ) {
+    this.buildForm();
+  }
 
   ngOnInit() {
-    moment.locale('es');
-    this.today = moment();
-    this.getStartDateDays();
-
-    this.firstFormGroup = this.formBuilder.group({
-      goalName: ['', Validators.required],
-      goalCategory: ['', Validators.required],
-      goalDescription: ['', Validators.required],
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      reportFrequency: ['', Validators.required],
-      startDate: [''], // For daily reports only
-      endDate: [''], // For daily reports only
-      startingWeekDay: [''], // For weekly reports only
-      totalWeeks: ['1'], // For weekly reports only
-    });
-    this.thirdFormGroup = this.formBuilder.group({
-      stakeType: ['', Validators.required],
-      cause: ['', Validators.required],
-      quantity: ['1', Validators.required],
-      accept: ['', Validators.required],
-    });
 
     this.secondFormGroup.valueChanges.subscribe((changes) => {
       const {
@@ -131,6 +109,40 @@ export class CreateGoalComponent implements OnInit {
       } else {
         this.totalDonation = quantity * this.totalWeeks;
       }
+    });
+
+    this.causeService.getCauses()
+      .subscribe((result: { success: boolean, data: any }) => {
+        const { success, data } = result;
+        if (success){
+          this.causes = data;
+        }
+      });
+
+  }
+
+  buildForm(){
+    moment.locale('es');
+    this.today = moment();
+    this.getStartDateDays();
+
+    this.firstFormGroup = this.formBuilder.group({
+      goalName: ['', Validators.required],
+      goalCategory: ['', Validators.required],
+      goalDescription: ['', Validators.required],
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      reportFrequency: ['', Validators.required],
+      startDate: [''], // For daily reports only
+      endDate: [''], // For daily reports only
+      startingWeekDay: [''], // For weekly reports only
+      totalWeeks: ['1'], // For weekly reports only
+    });
+    this.thirdFormGroup = this.formBuilder.group({
+      stakeType: ['', Validators.required],
+      cause: ['', Validators.required],
+      quantity: ['1', Validators.required],
+      accept: ['', Validators.required],
     });
   }
 

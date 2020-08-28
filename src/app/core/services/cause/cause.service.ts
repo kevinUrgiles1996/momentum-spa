@@ -6,34 +6,29 @@ import { environment } from '../../../../environments/environment';
 import { throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
+import { Cause } from '@core/interfaces/cause.interface';
+
+
 @Injectable({
   providedIn: 'root'
 })
-export class GoalService {
+export class CauseService {
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
-  getUserGoals(){
+  getCauses(){
     return this.http
-      .get(`${environment.urlApi}/goals`)
+      .get(`${environment.urlApi}/causes`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getUserGoal(goalId: string){
+  createCause(cause: Cause){
     return this.http
-      .get(`${environment.urlApi}/goals/${goalId}`)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  createGoal(newGoal: any){
-    return this.http
-      .post(`${environment.urlApi}/goals`, newGoal)
+      .post(`${environment.urlApi}/causes`, cause)
       .pipe(
         catchError(this.handleError)
       );
@@ -42,4 +37,5 @@ export class GoalService {
   private handleError = (err: HttpErrorResponse) => {
     return throwError(err.error);
   }
+
 }

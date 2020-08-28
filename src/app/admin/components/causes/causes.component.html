@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" *ngIf="causes">
   <div *ngFor="let cause of causes" class="col-xs-12 col-md-6 col-lg-4">
     <mat-card>
-      <img mat-card-image [src]="cause.image" />
+      <img mat-card-image [src]="cause.imageUrl" />
       <mat-card-title>
         {{ cause.name }}
       </mat-card-title>

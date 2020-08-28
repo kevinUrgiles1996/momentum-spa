@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Goal } from '@core/interfaces/goal.interface';
 
 @Component({
   selector: 'app-goal',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./goal.component.scss'],
 })
 export class GoalComponent implements OnInit {
-  @Input() goal: any;
+  @Input() goal: Goal;
 
   constructor() {}
 
