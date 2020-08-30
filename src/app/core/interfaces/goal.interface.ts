@@ -4,6 +4,7 @@ export enum reportFrequency{
 }
 
 export interface Goal {
+  _id ?: string;
   name: string;
   category: string;
   description: string;

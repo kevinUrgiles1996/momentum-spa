@@ -24,3 +24,17 @@ div p {
 div {
   padding: 0;
 }
+
+.report-status{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.successful-icon{
+  color: blue;
+}
+
+.failure-icon{
+  color: red;
+}

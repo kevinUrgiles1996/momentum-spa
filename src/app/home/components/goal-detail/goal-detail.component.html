@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="col-md-3 col-xs-12">
-    <app-goal-progress></app-goal-progress>
+  <div class="col-md-3 col-xs-12" *ngIf="reports" >
+    <app-goal-progress [reports]="reports"  [cause]="cause" ></app-goal-progress>
   </div>
   <div class="col-md-9 col-xs-12">
     <div class="goal-detail-container">
       <mat-card *ngIf="goal">
         <mat-card-title>
           <div class="row between-xs middle-xs">
-            <h2>{{ goal.title }}</h2>
+            <h2>{{ goal.name }}</h2>
             <button mat-mini-fab color="primary">
               <mat-icon routerLink="/">keyboard_backspace</mat-icon>
             </button>
@@ -19,19 +19,17 @@
             <div class="col-xs-8">
               <p><strong>Me compromento a</strong></p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur unde quibusdam reprehenderit porro soluta obcaecati?
-                Modi vero aut non pariatur numquam incidunt dolore recusandae.
+                {{ goal.description }}
               </p>
             </div>
-            <!-- <div class="col-xs-2 xs-offset-2"> -->
+  
             <button mat-raised-button color="accent" (click)="openDialog()">
               Detalles
             </button>
-            <!-- </div> -->
+
           </div>
 
-          <div class="row middle-xs between-xs report-info">
+          <!-- <div class="row middle-xs between-xs report-info">
             <p *ngIf="goal.nextReportDate == ''">
               <strong>Actividad Finalizada</strong>
             </p>
@@ -48,37 +46,28 @@
             >
               Reportar
             </button>
-          </div>
+          </div> -->
           <br />
           <div class="row middle-xs between-xs">
-            <mat-tab-group>
+            <mat-tab-group *ngIf="reports">
               <mat-tab>
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon">assignment</mat-icon>
                 </ng-template>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>18 Junio 2020</p>
-                  <p><strong>Estado: </strong>Exitoso</p>
-                </mat-card>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>19 Junio 2020</p>
-                  <p><strong>Estado: </strong>Exitoso</p>
-                </mat-card>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>20 Junio 2020</p>
-                  <p><strong>Estado: </strong>Exitoso</p>
-                </mat-card>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>21 Junio 2020</p>
-                  <p><strong>Estado: </strong>Exitoso</p>
-                </mat-card>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>22 Junio 2020</p>
-                  <p><strong>Estado: </strong>Exitoso</p>
-                </mat-card>
-                <mat-card>
-                  <p><strong>Fecha reporte: </strong>23 Junio 2020</p>
-                  <p><strong>Estado: </strong>Fallido</p>
+                <mat-card *ngFor="let report of reports" >
+                  <p><strong>Fecha reporte: </strong>{{ report.date | date }}</p>
+
+                  <div *ngIf="report.successful" class="report-status">
+                    <mat-icon class="successful-icon" >check</mat-icon>
+                    <span>Reporte Exitoso</span>
+                  </div>
+
+                  <div *ngIf="!report.successful" class="report-status">
+                    <mat-icon class="failure-icon" >clear</mat-icon>
+                    <span>Reporte Fallido</span>
+                  </div>
+                  
+
                 </mat-card>
               </mat-tab>
 
@@ -86,133 +75,43 @@
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon">wallpaper</mat-icon>
                 </ng-template>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <img
-                        mat-card-image
-                        src="https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Running/Articles/Can+Running+and+Other+Exercise/running+alone-front.jpg"
-                        alt=""
-                      />
+                <div  *ngFor="let report of reports">
+                  <mat-card *ngIf="report.successful">
+                    
+                    <div  class="row beetween-xs middle-xs">
+                      <div class="col-xs-6">
+                        <img
+                          mat-card-image
+                          [src]="report.imageUrl"
+                          alt="report evidence"
+                        />
+                      </div>
+                      <div class="col-xs-6">
+                        <p><strong>{{ report.date | date }}</strong></p>
+                      </div>
                     </div>
-                    <div class="col-xs-6">
-                      <p><strong>Junio 18, 2020, 8:21 AM</strong></p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <img
-                        mat-card-image
-                        src="https://www.atlantida.net/wp-content/uploads/2014/09/estiramientos_consejos_hacer-running.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col-xs-6">
-                      <p><strong>Junio 19, 2020, 8:21 AM</strong></p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <img
-                        mat-card-image
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQVjF-tfbHVQVP98dckB4MJOnKRnUZ0G4PFGA&usqp=CAU"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col-xs-6">
-                      <p><strong>Junio 20, 2020, 8:21 AM</strong></p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <img
-                        mat-card-image
-                        src="https://www.pari.com/fileadmin/_processed_/e/e/csm_Christine_Braune_Sport_mit_PCD_joggen_c09ff01b27.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col-xs-6">
-                      <p><strong>Junio 21, 2020, 9:11 AM</strong></p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <img
-                        mat-card-image
-                        src="https://bloximages.chicago2.vip.townnews.com/readingeagle.com/content/tncms/assets/v3/editorial/3/95/395d904a-8270-11ea-92b0-9f2bc875f8fa/5e9ca01dd6ddc.image.jpg?resize=1200%2C1600"
-                        alt=""
-                      />
-                    </div>
-                    <div class="col-xs-6">
-                      <p><strong>Junio 22, 2020, 7:30 PM</strong></p>
-                    </div>
-                  </div>
-                </mat-card>
+                  </mat-card>
+                </div>
               </mat-tab>
 
               <mat-tab>
                 <ng-template mat-tab-label>
                   <mat-icon class="example-tab-icon">comment</mat-icon>
                 </ng-template>
-
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <p><strong>June 18, 2020, 8:21 AM</strong></p>
+                <div *ngFor="let report of reports">
+                  <mat-card *ngIf="report.successful">
+                    <div class="row beetween-xs middle-xs">
+                      <div class="col-xs-6">
+                        <p><strong>{{ report.date | date }}</strong></p>
+                      </div>
+                      <div class="col-xs-6">
+                        <p>{{ report.comment }}</p>
+                      </div>
                     </div>
-                    <div class="col-xs-6">
-                      <p>Hoy casi no cumplo la meta</p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <p><strong>Junio 19, 2020, 8:21 AM</strong></p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>¡El trote de hoy estuvo fácil!</p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <p><strong>Junio 20, 2020, 8:21 AM</strong></p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>No quería trotar pero cumplí</p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <p><strong>Junio 21, 2020, 9:11 AM</strong></p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>!Trote cumplido!</p>
-                    </div>
-                  </div>
-                </mat-card>
-                <mat-card>
-                  <div class="row beetween-xs middle-xs">
-                    <div class="col-xs-6">
-                      <p><strong>Junio 22, 2020, 7:30 PM</strong></p>
-                    </div>
-                    <div class="col-xs-6">
-                      <p>Recordatorio: No trotar cuando no he dormido</p>
-                    </div>
-                  </div>
-                </mat-card>
+                  </mat-card>
+                </div>
+  
+   
               </mat-tab>
             </mat-tab-group>
           </div>

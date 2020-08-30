@@ -7,7 +7,6 @@ import { GoalService } from '@core/services/goal/goal.service';
 import { CauseService } from '@core/services/cause/cause.service';
 import { Cause } from '@core/interfaces/cause.interface';
 import * as moment from 'moment';
-import { CanColor } from '@angular/material/core';
 
 
 @Component({

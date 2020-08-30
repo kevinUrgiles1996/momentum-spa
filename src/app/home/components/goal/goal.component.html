@@ -23,12 +23,12 @@
         value="50"
       ></mat-progress-bar>
       <button mat-mini-fab color="primary">
-        <mat-icon routerLink="{{ goal.id }}">arrow_right_alt</mat-icon>
+        <mat-icon routerLink="{{ goal._id }}">arrow_right_alt</mat-icon>
       </button>
     </div>
     <div class="row middle-xs between-xs report-info">
 
-      <p *ngIf="goal.active != ''">
+      <p *ngIf="goal.active">
         Siguiente reporte: <strong></strong>
       </p>
 
@@ -37,10 +37,9 @@
       </p>
 
       <button
-        *ngIf="goal.nextReportDate == 'Hoy'"
         mat-raised-button
         color="accent"
-        routerLink="report/{{ goal.id }}"
+        routerLink="report/{{ goal._id }}"
       >
         Reportar
       </button>

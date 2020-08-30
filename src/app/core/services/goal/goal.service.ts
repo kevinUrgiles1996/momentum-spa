@@ -39,6 +39,14 @@ export class GoalService {
       );
   }
 
+  getGoalReports(goalId: string){
+    return this.http
+      .get(`${environment.urlApi}/reports/${goalId}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   private handleError = (err: HttpErrorResponse) => {
     return throwError(err.error);
   }
