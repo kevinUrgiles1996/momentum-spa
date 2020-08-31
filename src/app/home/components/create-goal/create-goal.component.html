@@ -183,7 +183,7 @@
                 <mat-form-field>
                   <mat-label>Escoge la causa que quieres apoyar</mat-label>
                   <mat-select formControlName="cause" *ngIf="causes">
-                    <mat-option *ngFor="let cause of causes" [value]="cause.name">{{
+                    <mat-option *ngFor="let cause of causes" [value]="cause._id">{{
                       cause.name
                     }}</mat-option>
                   </mat-select>

@@ -1,4 +1,5 @@
 export interface Cause {
+  _id ?: string;
   name: string;
   description: string;
   imageUrl: string;

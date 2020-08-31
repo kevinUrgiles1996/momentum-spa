@@ -13,14 +13,13 @@
     </div>
   </mat-card-title>
   <mat-card-content>
-    <!-- <p>Semana {{ goal.currentWeek }}/{{ goal.totalWeeks }}</p> -->
-    <p>Fecha de inicio: {{goal.startDate}}</p>
-    <p>Fecha de fin: {{goal.endDate}}</p>
+    <p>Fecha de inicio: {{goal.startDate | date}}</p>
+    <p>Fecha de fin: {{goal.endDate | date}}</p>
     <div class="row between-xs middle-xs">
       <mat-progress-bar
         color="primary"
         mode="determinate"
-        value="50"
+        [value]="getPercentage()"
       ></mat-progress-bar>
       <button mat-mini-fab color="primary">
         <mat-icon routerLink="{{ goal._id }}">arrow_right_alt</mat-icon>

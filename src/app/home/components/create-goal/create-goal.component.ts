@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { Router } from '@angular/router';
+
 
 import { Goal, reportFrequency } from '@core/interfaces/goal.interface';
 import { GoalService } from '@core/services/goal/goal.service';
@@ -57,6 +59,7 @@ export class CreateGoalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private goalService: GoalService,
     private causeService: CauseService,
+    private router: Router
   ) {
     this.buildForm();
   }
@@ -172,11 +175,14 @@ export class CreateGoalComponent implements OnInit {
   getThirdGroupValues(){
     const { quantity, cause } = this.thirdFormGroup.value;
     this.newGoal.moneyStake = quantity;
-    this.newGoal.cause = '5c8a1d5b0190b214360dc036';
+    this.newGoal.cause = cause;
     this.goalService.createGoal(this.newGoal)
-      .subscribe((result) => {
-        console.log(result);
-      })
+      .subscribe((result: { success: boolean, data: any }) => {
+        const { success, data } = result;
+        if (success){
+          this.router.navigate(['/']);
+        }
+      });
   }
 
 }
