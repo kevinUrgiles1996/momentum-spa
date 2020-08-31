@@ -10,6 +10,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { TextPipe } from '@core/pipes/text/text.pipe';
+import { BlogTextPipe } from '@core/pipes/blog-text/blog-text.pipe';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '@core/services/auth.interceptor';

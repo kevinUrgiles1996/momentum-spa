@@ -6,12 +6,11 @@ import { TokenService } from './services/token/token.service';
 import { GoalService } from './services/goal/goal.service';
 import { UserService } from './services/user/user.service';
 import { CauseService } from './services/cause/cause.service';
+import { BlogTextPipe } from './pipes/blog-text/blog-text.pipe';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ],
+  declarations: [BlogTextPipe],
+  imports: [],
   providers: [
     AuthService,
     TokenService,

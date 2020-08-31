@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostDetailComponent } from '../post-detail/post-detail.component';
 import { PostUpdateComponent } from '../post-update/post-update.component';
 
-import { Router } from '@angular/router';
+import { PostService } from '@core/services/post/post.service';
 
 @Component({
   selector: 'app-post',
@@ -12,10 +12,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent implements OnInit {
-  @Input() post: Post;
+
+
+  @Input() post: Post | null;
   @Input() edit: boolean;
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private postService: PostService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -38,5 +43,15 @@ export class PostComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The view post edit was closed');
     });
+  }
+
+  deletePost(){
+    this.postService.deletePost(this.post._id)
+      .subscribe((result: { success: boolean, data: any }) => {
+        const { success, data } = result;
+        if (success){
+          this.post = null;
+        }
+      });
   }
 }

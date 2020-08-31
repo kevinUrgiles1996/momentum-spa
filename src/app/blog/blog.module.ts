@@ -15,6 +15,8 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostsUserComponent } from './components/posts-user/posts-user.component';
 import { PostUpdateComponent } from './components/post-update/post-update.component';
 
+import { BlogTextPipe } from '@core/pipes/blog-text/blog-text.pipe';
+
 @NgModule({
   declarations: [
     MainViewComponent,
@@ -23,14 +25,15 @@ import { PostUpdateComponent } from './components/post-update/post-update.compon
     PostDetailComponent,
     PostsComponent,
     PostsUserComponent,
-    PostUpdateComponent
+    PostUpdateComponent,
+    BlogTextPipe
   ],
   imports: [
     CommonModule,
     BlogRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   exports: [MainViewComponent, MaterialModule],
 })

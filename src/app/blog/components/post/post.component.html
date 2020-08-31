@@ -1,13 +1,16 @@
-<mat-card class="post">
+<mat-card class="post" *ngIf="post">
   <mat-card-title>
-    <p (click)="openDialog()">{{ post.title }}</p>
-    <div *ngIf="edit" >
+    <p>{{ post.title }}</p>
+    <div *ngIf="edit; else elseBlock" >
       <mat-icon class="edit" (click)="editPost()">edit</mat-icon>
-    </div>  
+    </div>
+    <ng-template #elseBlock>
+      <mat-icon class="expand" (click)="openDialog()" >open_in_full</mat-icon>
+    </ng-template>
   </mat-card-title>
   <mat-card-content class="card-content">
     <p>
-      {{ post.content }}
+      {{ post.content | blogText }}
     </p>
   </mat-card-content>
   <mat-card-footer class="card-footer">
@@ -15,7 +18,7 @@
     
     <p>{{ post.date | date }}</p>
     <div *ngIf="edit" >
-      <mat-icon>delete</mat-icon>
+      <mat-icon (click)="deletePost()"  class="delete" >delete</mat-icon>
     </div>
     <div class="likes" *ngIf="!edit" >
       <mat-icon class="like">favorite_border</mat-icon>

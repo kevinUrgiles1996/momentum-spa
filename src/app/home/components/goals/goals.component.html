@@ -1,10 +1,20 @@
-<div class="goals-container">
+<div class="goals-container" >
   <mat-tab-group mat-align-tabs="start" id="step2">
-    <mat-tab label="Activas" *ngIf="activeGoals">
-      <app-goal *ngFor="let goal of activeGoals" [goal]="goal"></app-goal>
+    <mat-tab label="Activas" >
+      <div *ngIf="activeGoals; else elseBlock">
+        <app-goal  *ngFor="let goal of activeGoals" [goal]="goal"></app-goal>
+      </div>
+      <ng-template #elseBlock>
+        <p class="message" >No existen metas activas aún</p>
+      </ng-template>
     </mat-tab>
-    <mat-tab label="Terminadas" *ngIf="inactiveGoals">
-      <app-goal *ngFor="let goal of inactiveGoals" [goal]="goal"></app-goal>
+    <mat-tab label="Terminadas" >
+      <div *ngIf="inactiveGoals; else elseBlock" >
+        <app-goal *ngFor="let goal of inactiveGoals" [goal]="goal"></app-goal>
+      </div>
+      <ng-template>
+        <p class="message" #elseBlock>No existen metas inactivas aún</p>
+      </ng-template>
     </mat-tab>
   </mat-tab-group>
 </div>

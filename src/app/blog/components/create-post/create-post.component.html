@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Titulo" formControlName="title" />
+            <input matInput placeholder="Título" formControlName="title" />
             <mat-error
               *ngIf="addressForm.controls['title'].hasError('required')"
             >
@@ -18,8 +18,9 @@
           <mat-form-field class="full-width">
             <textarea
               matInput
-              placeholder="Descripcion"
+              placeholder="Descripción"
               formControlName="content"
+              rows="8"
             ></textarea>
             <mat-error
               *ngIf="addressForm.controls['content'].hasError('required')"
@@ -37,7 +38,7 @@
     </mat-card-content>
     <mat-card-actions>
       <div class="row around-xs">
-        <button mat-raised-button color="primary">Crear publicación</button>
+        <button [disabled]="addressForm.invalid" mat-raised-button color="primary">Crear publicación</button>
       </div>
     </mat-card-actions>
   </mat-card>
