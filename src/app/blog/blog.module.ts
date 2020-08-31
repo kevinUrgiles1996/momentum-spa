@@ -8,11 +8,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { PostComponent } from './components/post/post.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { PostsComponent } from './components/posts/posts.component';
@@ -20,16 +16,19 @@ import { PostsUserComponent } from './components/posts-user/posts-user.component
 import { PostUpdateComponent } from './components/post-update/post-update.component';
 
 @NgModule({
-  declarations: [MainViewComponent, PostComponent, CreatePostComponent, PostDetailComponent, PostsComponent, PostsUserComponent, PostUpdateComponent],
+  declarations: [
+    MainViewComponent,
+    PostComponent,
+    CreatePostComponent,
+    PostDetailComponent,
+    PostsComponent,
+    PostsUserComponent,
+    PostUpdateComponent
+  ],
   imports: [
     CommonModule,
     BlogRoutingModule,
     MaterialModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
     ReactiveFormsModule,
     FormsModule,
   ],

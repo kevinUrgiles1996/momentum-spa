@@ -11,11 +11,13 @@
     </p>
   </mat-card-content>
   <mat-card-footer class="card-footer">
-    <!-- <p>{{ post.author }}</p> -->
-    <!-- <p>{{ post.date }}</p> -->
-    <p>author</p>
-    <p>date</p>
-    <div class="likes">
+    <p>{{ post.user.name }}</p>
+    
+    <p>{{ post.date | date }}</p>
+    <div *ngIf="edit" >
+      <mat-icon>delete</mat-icon>
+    </div>
+    <div class="likes" *ngIf="!edit" >
       <mat-icon class="like">favorite_border</mat-icon>
       {{ post.likes }}
     </div>

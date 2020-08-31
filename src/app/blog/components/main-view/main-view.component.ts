@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ConstantPool } from '@angular/compiler';
 import { Router } from '@angular/router';
 
 @Component({

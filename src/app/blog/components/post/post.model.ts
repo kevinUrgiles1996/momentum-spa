@@ -3,5 +3,6 @@ export interface Post{
     content: string;
     likes: number;
     imageURL: string;
+    date: Date;
     user: any;
 }

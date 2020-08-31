@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import * as moment from 'moment';
 import { PostService } from '@core/services/post/post.service';
@@ -32,21 +32,21 @@ export class CreatePostComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private postService: PostService,
-    private toastr: ToastrService
+    private snackBar: MatSnackBar
   ) {}
 
-  showSuccess(msg: string) {
-    this.toastr.success(msg);
+  showSuccess(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
-  showError(msg: string) {
-    this.toastr.error(msg);
+  showError(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
-  // setForm() {
-  //   this.title = '';
-  //   this.content = '';
-  // }
 
   onSubmit(formValue: any) {
     const { title, content } = formValue;
@@ -54,14 +54,14 @@ export class CreatePostComponent implements OnInit {
       this.postService.createPost(formValue).subscribe((result: any) => {
         const { data, success } = result;
         if (success) {
-          this.showSuccess('Publicación creada');
+          this.showSuccess('Publicación creada', 'exit');
           this.router.navigate(['blog/me']);
         } else {
-          this.showError('Error al crear la publicación');
+          this.showError('Error al crear la publicación', 'exit');
         }
       });
     } else {
-      this.showError('Llene todos los campos!');
+      this.showError('Llene todos los campos!', 'exit');
     }
   }
 }

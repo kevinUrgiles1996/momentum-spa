@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { PostService } from '@core/services/post/post.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-update',
@@ -17,11 +17,23 @@ export class PostUpdateComponent {
     public dialogRef: MatDialogRef<PostUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private postServide: PostService,
-    private toastr: ToastrService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {
     this.title = this.data.title;
     this.content = this.data.content;
+  }
+
+  showSuccess(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+  showError(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   close(): void {
@@ -37,10 +49,10 @@ export class PostUpdateComponent {
       .subscribe((result: any) => {
         const { data, success } = result;
         if (success) {
-          this.toastr.success('Publicación actualizada.');
+          this.showSuccess('Publicación actualizada', 'exit');
           this.dialogRef.close();
         } else {
-          this.toastr.error('No se pudo eliminar la publicación.');
+          this.showError('No se pudo actualizar la publicación', 'error');
         }
       });
   }
