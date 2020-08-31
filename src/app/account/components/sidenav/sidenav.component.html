@@ -1,0 +1,22 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <div>
+      <button routerLinkActive="active" routerLink="info" color="primary" mat-raised-button>
+        <mat-icon>assignment_ind</mat-icon>
+        Información General
+      </button>
+      <button routerLinkActive="active" routerLink="password" color="primary" mat-raised-button>
+        <mat-icon>vpn_key</mat-icon>
+        Cambiar contraseña
+      </button>
+      <button routerLinkActive="active" routerLink="picture" color="primary" mat-raised-button>
+        <mat-icon>photo_camera</mat-icon>
+        Foto de Perfil
+      </button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

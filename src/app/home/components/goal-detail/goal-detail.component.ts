@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
+import { GoalService } from '@core/services/goal/goal.service';
+import { Goal } from '@core/interfaces/goal.interface';
+import { Cause } from '@core/interfaces/cause.interface';
+
+import * as moment from 'moment';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -16,74 +18,74 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./goal-detail.component.scss'],
 })
 export class GoalDetailComponent implements OnInit {
-  goal: any = {};
-  goals: any[] = [
-    {
-      id: 1,
-      title: 'Trotar 45 minutos',
-      public: false,
-      nextReportDate: '27 de Julio',
-      currentWeek: 1,
-      totalWeeks: 4,
-    },
-    {
-      id: 2,
-      title: 'Leer 20 minutos',
-      public: true,
-      nextReportDate: 'Hoy',
-      currentWeek: 3,
-      totalWeeks: 4,
-    },
-    {
-      id: 3,
-      title: 'Estudiar Algebra',
-      public: true,
-      nextReportDate: '',
-      currentWeek: 6,
-      totalWeeks: 6,
-    },
-    {
-      id: 4,
-      title: 'Dibujar',
-      public: true,
-      nextReportDate: '',
-      currentWeek: 4,
-      totalWeeks: 4,
-    },
-  ];
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {}
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private goalService: GoalService
+    ) {
+      moment.locale('es');
+    }
+
+
+  goal: any;
+  cause: Cause;
+  reports: any;
 
   openDialog() {
     this.dialog.open(DialogDataExampleDialog, {
-      data: {
-        animal: 'panda',
-      },
+      data: this.goal,
     });
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       const { goalId } = params;
-      this.getProduct(Number(goalId));
+      this.goalService.getUserGoal(goalId)
+        .subscribe((result: { success: boolean, data: any }) => {
+          const { success, data } = result;
+          if (success){
+            this.goal = this.formatGoal(data);
+            this.cause = data.cause;
+          }
+        });
+      this.goalService.getGoalReports(goalId)
+        .subscribe((result: { success: boolean, data: any }) => {
+          const { success, data } = result;
+          if (success){
+            this.reports = data;
+          }
+        });
     });
   }
 
-  getProduct(goalId: number) {
-    this.goal = this.goals.find((goal) => goal.id === goalId);
+  formatGoal(goal: Goal){
+    const startDateFormatted = moment(goal.startDate).format('dddd DD-MM-YYYY');
+    const endDateFormatted = moment(goal.endDate).format('dddd DD-MM-YYYY');
+    const duration = moment(goal.endDate).diff(moment(goal.startDate), 'days');
+    const goalFormatted = {
+      ...goal,
+      startDate: startDateFormatted,
+      endDate: endDateFormatted,
+      duration
+    };
+    return goalFormatted;
   }
+
+
 }
 
 @Component({
   selector: 'dialog-data-example-dialog',
   template: `<h1 mat-dialog-title>Detalles de la meta</h1>
     <div mat-dialog-content>
-      <p><strong>Fecha de inicio:</strong> 12/07/2020</p>
-      <p><strong>Fecha de culminación:</strong> 20/07/2020</p>
-      <p><strong>Duración:</strong> 9 Días</p>
-      <p><strong>Reporte:</strong> Diario</p>
+      <p><strong>Fecha de inicio: </strong>{{ data.startDate }}</p>
+      <p><strong>Fecha de culminación: </strong> {{ data.endDate }}</p>
+      <p><strong>Duración: </strong>{{ data.duration }} días</p>
+      <p><strong>Reporte: </strong>{{ data.reportFrequency ? 'Diario': 'Semanal' }}</p>
     </div>`,
 })
 export class DialogDataExampleDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 }

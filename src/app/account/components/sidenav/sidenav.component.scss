@@ -1,0 +1,17 @@
+.example-container {
+  min-height: 80vh;
+}
+
+button {
+  width: 80%;
+  margin: 10px auto;
+  text-align: left;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+button.active {
+  background-color: #ff4081;
+}

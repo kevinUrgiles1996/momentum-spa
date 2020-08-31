@@ -1,5 +1,6 @@
-<div class="profile-header">
-  <mat-icon color="primary">account_circle</mat-icon>
+<div class="profile-header" *ngIf="user">
+  <!-- <mat-icon color="primary">account_circle</mat-icon> -->
+  <img [src]="user.profileUrl" mat-card-image alt="">
 </div>
 <div class="profile-content" id="step1" *ngIf="user">
   <mat-card>

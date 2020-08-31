@@ -82,6 +82,15 @@ export class AuthService {
                   );
   }
 
+  updatePassword(currentPassword: string, newPassword: string){
+    const body = { currentPassword, newPassword };
+    return this.http
+                .put(`${environment.urlApi}/auth/updatepassword`, body)
+                .pipe(
+                  catchError(this.handleError)
+                );
+  }
+
   public isAuthenticated(): boolean {
     const helper = new JwtHelperService();
     const token = this.tokenService.getToken();

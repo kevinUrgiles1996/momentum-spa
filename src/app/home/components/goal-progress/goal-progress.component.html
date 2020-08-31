@@ -9,17 +9,17 @@
       >
       </canvas>
     </div>
-    <p><strong>Tasa de éxito:</strong> 80%</p>
+    <p><strong>Tasa de éxito: </strong>{{ successRate | number: '1.0-2' }} %</p>
   </mat-card>
-  <mat-card>
+  <mat-card *ngIf="cause">
     <img
-      src="https://www.terrycralle.com/wp-content/uploads/2020/05/How-to-Safely-Help-Homeless-People-During-Coronavirus-Pandemic.jpg"
-      alt=""
+      [src]="cause.imageUrl"
+      [alt]="cause.name"
     />
     <p>
       <strong>Causa apoyada</strong>
     </p>
-    <p>No más personas viviendo en las calles</p>
+    <p>{{ cause.name }}</p>
     <button mat-raised-button color="accent">Ver más</button>
   </mat-card>
 </div>
