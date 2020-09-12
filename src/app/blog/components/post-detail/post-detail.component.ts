@@ -1,9 +1,10 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { PostService } from '@core/services/post/post.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { PostsUserComponent } from '../posts-user/posts-user.component';
+
+import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -18,7 +19,8 @@ export class PostDetailComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private postServide: PostService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {
     this.edit = data.edit;
   }
@@ -40,17 +42,20 @@ export class PostDetailComponent {
   }
 
   deletePost(): void {
-    const id = this.data._id;
-    this.postServide.deletePost(id).subscribe((result: any) => {
-      const { data, success } = result;
-      if (success) {
-        this.showSuccess('Publicación eliminada', 'success');
-        this.close();
-        this.router.navigate(['blog/public']);
-      } else {
-        this.showError('No se pudo eliminar la publicación', 'error');
-      }
-    });
+
+  const id = this.data._id;
+  this.postServide.deletePost(id).subscribe((result: any) => {
+    const { data, success } = result;
+    if (success) {
+      this.showSuccess('Publicación eliminada', 'success');
+      this.close();
+      this.router.navigate(['blog/public']);
+    } else {
+      this.showError('No se pudo eliminar la publicación', 'error');
+    }
+  });
   }
 
 }
+
+

@@ -5,6 +5,7 @@ import { PostDetailComponent } from '../post-detail/post-detail.component';
 import { PostUpdateComponent } from '../post-update/post-update.component';
 
 import { PostService } from '@core/services/post/post.service';
+import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-post',
@@ -46,12 +47,26 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(){
-    this.postService.deletePost(this.post._id)
-      .subscribe((result: { success: boolean, data: any }) => {
-        const { success, data } = result;
-        if (success){
-          this.post = null;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: '400px',
+      data: {
+          title: 'Eliminar publicación',
+          message: ''}
+    });
+
+    // listen to response
+    dialogRef.afterClosed().subscribe(dialogResult => {
+        const confirmed = dialogResult;
+        if (confirmed){
+          this.postService.deletePost(this.post._id)
+          .subscribe((result: { success: boolean, data: any }) => {
+            const { success, data } = result;
+            if (success){
+              this.post = null;
+            }
+          });
         }
-      });
+    });
+
   }
 }
