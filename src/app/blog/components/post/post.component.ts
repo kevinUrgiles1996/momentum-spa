@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { Post } from './post.model';
+import { Post } from '../../../core/interfaces/post.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { PostDetailComponent } from '../post-detail/post-detail.component';
 import { PostUpdateComponent } from '../post-update/post-update.component';

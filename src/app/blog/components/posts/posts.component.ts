@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post/post.model';
+import { Post } from '@core/interfaces/post.interface';
 import { PostService } from '@core/services/post/post.service';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
