@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   urlApi: 'http://localhost:3000/api/v1',
+  urlStatisticsApi: 'http://localhost:3006/api/v1',
   firebaseConfig: {
     apiKey: 'AIzaSyCcGGT2poGjXDr7bs6nmjn0tkqRVq3LmcA',
     authDomain: 'momentum-98ba2.firebaseapp.com',
