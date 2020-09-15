@@ -14,7 +14,6 @@ import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confir
 })
 export class PostComponent implements OnInit {
 
-
   @Input() post: Post | null;
   @Input() edit: boolean;
 

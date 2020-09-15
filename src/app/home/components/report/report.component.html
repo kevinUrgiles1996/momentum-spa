@@ -27,7 +27,7 @@
   </div>
   <div class="col-md-9 col-xs-12">
     <div class="report-container">
-      <form [formGroup]="reportForm">
+      <form [formGroup]="reportForm" (ngSubmit)="updateReport($event)">
         <mat-card>
           <mat-card-title>
             Reporte

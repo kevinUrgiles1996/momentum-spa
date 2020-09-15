@@ -1,9 +1,11 @@
 <div class="row">
   <div class="col-md-3 col-xs-12" *ngIf="reports" >
+    <img *ngIf="reportSpinner" [src]="reportSpinner" alt="Loading">
     <app-goal-progress [reports]="reports"  [cause]="cause" ></app-goal-progress>
   </div>
   <div class="col-md-9 col-xs-12">
     <div class="goal-detail-container">
+      <img *ngIf="goalSpinner" [src]="goalSpinner" alt="Loading">
       <mat-card *ngIf="goal">
         <mat-card-title>
           <div class="row between-xs middle-xs">
@@ -29,24 +31,7 @@
 
           </div>
 
-          <!-- <div class="row middle-xs between-xs report-info">
-            <p *ngIf="goal.nextReportDate == ''">
-              <strong>Actividad Finalizada</strong>
-            </p>
 
-            <p *ngIf="goal.nextReportDate != ''">
-              <strong>Siguiente reporte: </strong>{{ goal.nextReportDate }}
-            </p>
-
-            <button
-              *ngIf="goal.nextReportDate == 'Hoy'"
-              routerLink="/goals/report/{{ goal.id }}"
-              mat-raised-button
-              color="accent"
-            >
-              Reportar
-            </button>
-          </div> -->
           <br />
           <div class="row middle-xs between-xs">
             <mat-tab-group *ngIf="reports">

@@ -2,14 +2,14 @@
   <mat-card-title>
     <div class="row between-xs middle-xs" id="step3">
       <h2>{{ goal.name }}</h2>
-      <mat-slide-toggle
-        class="example-margin"
-        color="primary"
-        checked="true"
-        disabled="false"
-      >
-        <mat-icon>public</mat-icon>
-      </mat-slide-toggle>
+      <button
+      *ngIf="reportButton"
+      mat-raised-button
+      color="accent"
+      routerLink="report/{{ goal._id }}"
+    >
+      Reportar
+    </button>
     </div>
   </mat-card-title>
   <mat-card-content>
@@ -27,22 +27,11 @@
     </div>
     <div class="row middle-xs between-xs report-info">
 
-      <p *ngIf="goal.active">
-        Siguiente reporte: <strong></strong>
-      </p>
 
       <p *ngIf="!goal.active">
         <strong>Actividad Finalizada</strong>
       </p>
 
-      <button
-        *ngIf="goal.active"
-        mat-raised-button
-        color="accent"
-        routerLink="report/{{ goal._id }}"
-      >
-        Reportar
-      </button>
     </div>
   </mat-card-content>
 </mat-card>

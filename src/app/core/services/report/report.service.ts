@@ -9,39 +9,23 @@ import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class GoalService {
+export class ReportService {
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
-  getUserGoals(){
+  getTodayReport(goalId: string){
     return this.http
-      .get(`${environment.urlApi}/goals`)
+      .get(`${environment.urlApi}/reports/today/${goalId}`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getUserGoal(goalId: string){
+  updateReport(goalId: string, body: any){
     return this.http
-      .get(`${environment.urlApi}/goals/${goalId}`)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  createGoal(newGoal: any){
-    return this.http
-      .post(`${environment.urlApi}/goals`, newGoal)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  getGoalReports(goalId: string){
-    return this.http
-      .get(`${environment.urlApi}/reports/${goalId}`)
+      .patch(`${environment.urlApi}/reports/${goalId}`, body)
       .pipe(
         catchError(this.handleError)
       );
@@ -50,4 +34,5 @@ export class GoalService {
   private handleError = (err: HttpErrorResponse) => {
     return throwError(err.error);
   }
+
 }

@@ -4,6 +4,7 @@ import { MultiDataSet, Label } from 'ng2-charts';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Params } from '@angular/router';
+import { ReportService } from '@core/services/report/report.service';
 
 @Component({
   selector: 'app-report',
@@ -21,7 +22,8 @@ export class ReportComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private reportService: ReportService
   ) {
     this.buildForm();
     this.route.params.subscribe((params: Params) => {
@@ -44,8 +46,24 @@ export class ReportComponent implements OnInit {
   buildForm(){
     this.reportForm = this.formBuilder.group({
       success: ['', Validators.required],
-      photo: ['', Validators.required],
+      photo: ['defaultLink', Validators.required],
       comment: ['', Validators.required],
     });
+  }
+
+  updateReport(event: Event){
+    event.preventDefault();
+    if (this.reportForm.valid){
+      const { photo, comment } = this.reportForm.value;
+      const body = {
+        successful: this.wasSuccessful,
+        imageUrl: photo,
+        comment
+      };
+      this.reportService.updateReport(this.goalId, body)
+        .subscribe((result) => {
+          console.log(result);
+        });
+    }
   }
 }
