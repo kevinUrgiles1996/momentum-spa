@@ -19,6 +19,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class GoalDetailComponent implements OnInit {
 
+  reportSpinner = './../../../../assets/images/spinner3.svg';
+  goalSpinner = './../../../../assets/images/spinner3.svg';
+
   constructor(
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -47,6 +50,7 @@ export class GoalDetailComponent implements OnInit {
           if (success){
             this.goal = this.formatGoal(data);
             this.cause = data.cause;
+            this.goalSpinner = '';
           }
         });
       this.goalService.getGoalReports(goalId)
@@ -54,6 +58,7 @@ export class GoalDetailComponent implements OnInit {
           const { success, data } = result;
           if (success){
             this.reports = data;
+            this.reportSpinner = '';
           }
         });
     });

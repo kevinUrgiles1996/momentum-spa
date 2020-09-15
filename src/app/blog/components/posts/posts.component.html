@@ -2,7 +2,7 @@
   <div class="col-md-5 col-xs-10 search">
     <input
       matInput
-      placeholder="Encuentra una publicación que te motive"
+      placeholder="Escribe algo para filtrar"
       type="search"
       [(ngModel)]="busqueda"
     />
@@ -11,6 +11,7 @@
     </button>
   </div>
 </div>
-<div class="posts" *ngFor="let post of posts">
-  <app-post [post]="post"></app-post>
+<div class="posts" >
+  <img class="spinner" *ngIf="postSpinner" [src]="postSpinner" alt="Loading">
+  <app-post *ngFor="let post of posts" [post]="post"></app-post>
 </div>

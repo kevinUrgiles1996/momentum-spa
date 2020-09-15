@@ -27,7 +27,7 @@
   </div>
   <div class="col-md-9 col-xs-12">
     <div class="report-container">
-      <form [formGroup]="reportForm">
+      <form [formGroup]="reportForm" (ngSubmit)="updateReport($event)">
         <mat-card>
           <mat-card-title>
             Reporte
@@ -36,9 +36,9 @@
             Leer 20 minutos
           </mat-card-subtitle>
           <mat-card-content>
-            <mat-form-field appearance="fill">
-              <mat-label>¿Tuviste éxito?</mat-label>
-              <mat-select formControlName="success">
+            <p>¿Tuviste éxito?</p>
+            <mat-form-field appearance="fill" >
+              <mat-select formControlName="success" placeholder="No" >
                 <mat-option value="si">Si</mat-option>
                 <mat-option value="no">No</mat-option>
               </mat-select>
@@ -60,8 +60,27 @@
           </mat-card-content>
           <mat-card-actions>
             <div class="row">
-              <div class="col-xs-2 xs-offset-5">
-                <button mat-raised-button color="accent" type="submit">
+              <div
+                *ngIf="wasSuccessful"
+                class="col-xs-2 xs-offset-5"
+              >
+                <button
+                  [disabled]="reportForm.invalid"
+                  mat-raised-button 
+                  color="accent" 
+                  type="submit">
+                  Enviar
+                </button>
+              </div>
+              <div 
+                *ngIf="!wasSuccessful"
+                class="col-xs-2 xs-offset-5"
+              >
+                <button
+                  routerLink="/"
+                  mat-raised-button 
+                  color="accent" 
+                  type="submit">
                   Enviar
                 </button>
               </div>

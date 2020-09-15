@@ -1,5 +1,5 @@
 <div class="chart-header">
-  <mat-card>
+  <mat-card *ngIf="successRate !== 0">
     <div class="chart-wrapper">
       <canvas
         baseChart
@@ -9,7 +9,7 @@
       >
       </canvas>
     </div>
-    <p><strong>Tasa de éxito: </strong>{{ successRate | number: '1.0-2' }} %</p>
+    <p  ><strong>Tasa de éxito: </strong>{{ successRate | number: '1.0-2' }} %</p>
   </mat-card>
   <mat-card *ngIf="cause">
     <img

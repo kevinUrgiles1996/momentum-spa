@@ -1,7 +1,7 @@
 <div class="goals-container" >
   <mat-tab-group mat-align-tabs="start" id="step2">
     <mat-tab label="Activas" >
-      <div *ngIf="activeGoals; else elseBlock">
+      <div  *ngIf="activeGoals; else elseBlock">
         <app-goal  *ngFor="let goal of activeGoals" [goal]="goal"></app-goal>
       </div>
       <ng-template #elseBlock>

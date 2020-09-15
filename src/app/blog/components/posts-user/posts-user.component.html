@@ -5,6 +5,7 @@
   <button mat-raised-button color="accent" routerLink="/blog/create" >Crear publicación</button>
 
 </div>
-<div class="posts" *ngFor="let post of postsUser">
-  <app-post [post]="post" [edit]="true"></app-post>
+<div class="posts" >
+  <img class="spinner" *ngIf="postSpinner" [src]="postSpinner" alt="Loading">
+  <app-post *ngFor="let post of postsUser" [post]="post" [edit]="true"></app-post>
 </div>

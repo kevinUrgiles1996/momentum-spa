@@ -39,7 +39,7 @@ export class UserPictureComponent implements OnInit {
   }
 
   uploadFile(event: Event){
-    this.urlImage = './../../../../assets/images/spinner.gif';
+    this.urlImage = './../../../../assets/images/spinner3.svg';
     event.preventDefault();
     if (this.valid){
       const dir = `images/profile/${this.imageFile.name}`;

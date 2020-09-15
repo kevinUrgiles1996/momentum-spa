@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Goal } from '@core/interfaces/goal.interface';
 import * as moment from 'moment';
 
+import { ReportService } from '@core/services/report/report.service';
+
 
 @Component({
   selector: 'app-goal',
@@ -10,11 +12,22 @@ import * as moment from 'moment';
 })
 export class GoalComponent implements OnInit {
   @Input() goal: Goal;
+  goalId: string;
+  reportButton: boolean = false;
 
-  constructor() {
-  }
+  constructor(
+    private reportService: ReportService
+  ) {}
 
   ngOnInit(): void {
+    this.goalId = this.goal._id;
+    this.reportService.getTodayReport(this.goal._id)
+      .subscribe((report: any) => {
+        console.log(report)
+        if (report !== null && !report.successful){
+          this.reportButton = true;
+        }
+      });
   }
 
   getPercentage(){
