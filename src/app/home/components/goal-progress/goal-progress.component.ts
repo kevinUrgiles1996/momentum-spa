@@ -12,8 +12,6 @@ import { Cause } from '@core/interfaces/cause.interface';
 })
 export class GoalProgressComponent implements OnInit {
 
-
-
   @Input() cause: Cause;
   @Input() reports: any;
   successful = 0;
@@ -37,7 +35,11 @@ export class GoalProgressComponent implements OnInit {
         this.failed += 1;
       }
     });
-    this.doughnutChartData = [[this.failed, this.successful]];
-    this.successRate = (this.successful / (this.successful + this.failed) ) * 100;
+    if ((this.failed + this.successful) > 0){
+      this.doughnutChartData = [[this.failed, this.successful]];
+      this.successRate = (this.successful / (this.successful + this.failed) ) * 100;
+    } else{
+      this.successRate = 0;
+    }
   }
 }

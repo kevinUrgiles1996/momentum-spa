@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 
 import { Goal } from '@core/interfaces/goal.interface';
 
@@ -11,10 +11,9 @@ export class GoalsComponent implements OnInit{
   @Input() activeGoals: Goal[];
   @Input() inactiveGoals: Goal[];
 
+
   constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

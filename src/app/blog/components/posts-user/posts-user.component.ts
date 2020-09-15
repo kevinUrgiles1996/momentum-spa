@@ -8,6 +8,7 @@ import { PostService } from '@core/services/post/post.service';
   styleUrls: ['./posts-user.component.scss'],
 })
 export class PostsUserComponent implements OnInit {
+  postSpinner = './../../../../assets/images/spinner3.svg';
   postsUser: Post[];
   lenghtPostUser: number;
 
@@ -22,6 +23,7 @@ export class PostsUserComponent implements OnInit {
       const { data, success } = result;
       if (success) {
         this.postsUser = data;
+        this.postSpinner = '';
         this.lenghtPostUser = this.postsUser.length;
       }
     });

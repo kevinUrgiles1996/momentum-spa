@@ -10,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./posts.component.scss']
 })
 export class PostsComponent implements OnInit {
+
+  postSpinner = './../../../../assets/images/spinner3.svg';
   posts: Post[];
   busqueda: string;
 
@@ -39,6 +41,7 @@ export class PostsComponent implements OnInit {
       const { data, success } = result;
       if (success) {
         this.posts = data;
+        this.postSpinner = '';
       }
     });
   }

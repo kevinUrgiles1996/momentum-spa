@@ -10,11 +10,12 @@ import * as moment from 'moment';
 })
 export class GoalComponent implements OnInit {
   @Input() goal: Goal;
-
+  goalId: string;
   constructor() {
   }
 
   ngOnInit(): void {
+    this.goalId = this.goal._id;
   }
 
   getPercentage(){

@@ -3,6 +3,8 @@ import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { ActivatedRoute, Params } from '@angular/router';
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -14,13 +16,17 @@ export class ReportComponent implements OnInit {
   doughnutChartType: ChartType = 'doughnut';
 
   wasSuccessful: boolean;
+  goalId: string;
   reportForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.reportForm = this.formBuilder.group({
-      success: ['', Validators.required],
-      photo: [''],
-      comment: ['', Validators.required],
+  constructor(
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {
+    this.buildForm();
+    this.route.params.subscribe((params: Params) => {
+      const { goalId } = params;
+      this.goalId = goalId;
     });
   }
 
@@ -32,6 +38,14 @@ export class ReportComponent implements OnInit {
       } else {
         this.wasSuccessful = false;
       }
+    });
+  }
+
+  buildForm(){
+    this.reportForm = this.formBuilder.group({
+      success: ['', Validators.required],
+      photo: ['', Validators.required],
+      comment: ['', Validators.required],
     });
   }
 }
