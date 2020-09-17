@@ -26,6 +26,14 @@ export class CauseService {
       );
   }
 
+  getCause(causeId: string){
+    return this.http
+      .get(`${environment.urlApi}/causes/${causeId}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   createCause(cause: Cause){
     return this.http
       .post(`${environment.urlApi}/causes`, cause)

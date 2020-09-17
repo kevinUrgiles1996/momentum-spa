@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../post/post.model';
+import { Post } from '@core/interfaces/post.interface';
 import { PostService } from '@core/services/post/post.service';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PostsComponent implements OnInit {
 
-  postSpinner = './../../../../assets/images/spinner3.svg';
+  postSpinnerVisible = true;
   posts: Post[];
   busqueda: string;
 
@@ -41,7 +41,7 @@ export class PostsComponent implements OnInit {
       const { data, success } = result;
       if (success) {
         this.posts = data;
-        this.postSpinner = '';
+        this.postSpinnerVisible = false;
       }
     });
   }

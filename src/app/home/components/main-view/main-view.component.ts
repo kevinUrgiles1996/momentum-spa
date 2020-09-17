@@ -13,8 +13,8 @@ import { User } from '@core/interfaces/user.interface';
   styleUrls: ['./main-view.component.scss'],
 })
 export class MainViewComponent implements OnInit {
-  userSpinner = './../../../../assets/images/spinner3.svg';
-  goalSpinner = './../../../../assets/images/spinner3.svg';
+  userSpinnerVisible = true;
+  goalSpinnerVisible = true;
   user: User;
   goals: Goal[];
   activeGoals: Goal[] = [];
@@ -70,7 +70,7 @@ export class MainViewComponent implements OnInit {
         const { data, success } = result;
         if (success){
           this.user = data;
-          this.userSpinner = '';
+          this.userSpinnerVisible = false;
         }
       });
 
@@ -80,7 +80,7 @@ export class MainViewComponent implements OnInit {
         if (success){
           this.goals = data;
           this.calculateGoals(this.goals);
-          this.goalSpinner = '';
+          this.goalSpinnerVisible = false;
         }
       });
 

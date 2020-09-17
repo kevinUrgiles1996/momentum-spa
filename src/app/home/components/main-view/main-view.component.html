@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3 col-xs-12">
-    <img *ngIf="userSpinner" [src]="userSpinner" alt="Loading">
+    <mat-spinner *ngIf="userSpinnerVisible" ></mat-spinner>
     <app-user 
       [user]="user" 
       [successfulGoals]="successfulGoals"
@@ -8,7 +8,7 @@
     </app-user>
   </div>
   <div class="col-md-9 col-xs-12">
-    <img *ngIf="goalSpinner" [src]="goalSpinner" alt="Loading">
+    <mat-spinner *ngIf="goalSpinnerVisible" ></mat-spinner>
     <app-goals
       [activeGoals]="activeGoals"
       [inactiveGoals]="inactiveGoals"
@@ -22,13 +22,7 @@
     </button>
   </div>
 </div>
-<!-- <div class="row tutorial-section">
-  <div class="col">
-    <button color="" mat-raised-button (click)="startTutorial()">
-      Tutorial guiado
-    </button>
-  </div>
-</div> -->
+
 <div class="row add-goal-section-mobile">
   <div class="col-xs-2 col-xs-offset-10">
     <button routerLink="create" id="step4" mat-fab color="accent">

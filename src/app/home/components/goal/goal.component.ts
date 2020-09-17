@@ -13,7 +13,7 @@ import { ReportService } from '@core/services/report/report.service';
 export class GoalComponent implements OnInit {
   @Input() goal: Goal;
   goalId: string;
-  reportButton: boolean = false;
+  reportButton = false;
 
   constructor(
     private reportService: ReportService
@@ -23,7 +23,6 @@ export class GoalComponent implements OnInit {
     this.goalId = this.goal._id;
     this.reportService.getTodayReport(this.goal._id)
       .subscribe((report: any) => {
-        console.log(report)
         if (report !== null && !report.successful){
           this.reportButton = true;
         }

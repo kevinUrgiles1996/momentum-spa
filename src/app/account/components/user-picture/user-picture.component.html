@@ -6,13 +6,12 @@
           <mat-card-content>
             <p>Seleccciona una imagen</p>
             <p>Archivos con formato <strong>png, jpg y jpeg</strong> son los únicos formatos válidos</p>
-            <input type="file" name="imageFile" id="" (change)="validateFile($event)" >
-            <img class="spinner" *ngIf="urlImage" [src]="urlImage" alt="Loading">
+            <input type="file" name="imageFile" (change)="validateFile($event)" >
+            <mat-spinner *ngIf="spinnerVisible"></mat-spinner>
             <p class="error-message" *ngIf="!valid && errorMessage">{{ errorMessage }}</p>
-            <p class="success-message" *ngIf="succesMessage" >{{ succesMessage }}</p>
           </mat-card-content>
           <mat-card-actions>
-              <button [disabled]="!valid || urlImage"  (click)="uploadFile($event)"  mat-raised-button color="accent">Subir</button>
+              <button [disabled]="!valid || spinnerVisible"  (click)="uploadFile($event)"  mat-raised-button color="accent">Subir</button>
           </mat-card-actions>
         </mat-card>
     </div>

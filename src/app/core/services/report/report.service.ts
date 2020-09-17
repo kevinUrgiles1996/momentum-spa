@@ -15,6 +15,12 @@ export class ReportService {
     private http: HttpClient
   ) { }
 
+  getReports(goalId: string) {
+    return this.http
+      .get(`${environment.urlApi}/reports/${goalId}`)
+      .pipe(catchError(this.handleError));
+  }
+
   getTodayReport(goalId: string){
     return this.http
       .get(`${environment.urlApi}/reports/today/${goalId}`)

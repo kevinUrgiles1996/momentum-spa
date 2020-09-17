@@ -6,6 +6,6 @@
 
 </div>
 <div class="posts" >
-  <img class="spinner" *ngIf="postSpinner" [src]="postSpinner" alt="Loading">
+  <mat-spinner *ngIf="postSpinnerVisible" ></mat-spinner>
   <app-post *ngFor="let post of postsUser" [post]="post" [edit]="true"></app-post>
 </div>

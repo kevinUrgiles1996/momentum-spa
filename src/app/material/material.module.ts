@@ -54,7 +54,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatNativeDateModule,
     MatSnackBarModule,
     MatDividerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatButtonModule,
@@ -80,7 +81,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatNativeDateModule,
     MatSnackBarModule,
     MatDividerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-EC' }],
 })

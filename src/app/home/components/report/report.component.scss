@@ -17,7 +17,18 @@ mat-select {
   font-size: 20px;
 }
 
+mat-spinner {
+  display: block;
+  margin: 50px auto;
+}
 
+.error-message{
+  color: red;
+}
+
+.success-message{
+  color: blue;
+}
 
 .mat-icon {
   font-size: 200px;
