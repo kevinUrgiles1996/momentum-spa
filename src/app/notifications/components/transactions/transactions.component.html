@@ -12,4 +12,7 @@
       </app-transaction-description>
     </div>
   </mat-card-content>
+  <mat-card-footer *ngIf="transactions">
+    <app-transaction-statistics [transactions]="transactions"  ></app-transaction-statistics>
+  </mat-card-footer>
 </mat-card>
