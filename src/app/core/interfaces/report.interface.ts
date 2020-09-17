@@ -4,5 +4,5 @@ export interface Report {
     successful ?: boolean;
     imageUrl: string;
     content: string;
-    goalId ?: string;
+    goalId ?: string | any;
 }

@@ -2,6 +2,11 @@
   display: none;
 }
 
+mat-spinner {
+  display: block;
+  margin: 50px auto;
+}
+
 @media only screen and (max-width: 800px) {
   .tutorial-section,
   .add-goal-section {

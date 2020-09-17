@@ -12,6 +12,6 @@
   </div>
 </div>
 <div class="posts" >
-  <img class="spinner" *ngIf="postSpinner" [src]="postSpinner" alt="Loading">
+  <mat-spinner *ngIf="postSpinnerVisible" ></mat-spinner>
   <app-post *ngFor="let post of posts" [post]="post"></app-post>
 </div>

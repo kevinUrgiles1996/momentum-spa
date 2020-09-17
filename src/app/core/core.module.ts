@@ -8,6 +8,7 @@ import { UserService } from './services/user/user.service';
 import { CauseService } from './services/cause/cause.service';
 import { PostService } from './services/post/post.service';
 import { ReportService } from './services/report/report.service';
+import { TransactionService } from './services/transaction/transaction.service';
 import { BlogTextPipe } from './pipes/blog-text/blog-text.pipe';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BlogTextPipe } from './pipes/blog-text/blog-text.pipe';
     UserService,
     PostService,
     ReportService,
-    CauseService
+    CauseService,
+    TransactionService
   ]
 })
 export class CoreModule { }

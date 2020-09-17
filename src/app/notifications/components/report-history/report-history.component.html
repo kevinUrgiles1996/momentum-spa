@@ -1,16 +1,5 @@
-<mat-card>
-  <mat-card-title>Reportes Pendientes</mat-card-title>
-  <mat-card-content>
-    <div class="row middle-xs">
-      <div class="col-md-4">Leer 20 minutos</div>
-      <div class="col-md-2">
-        <button color="accent" mat-raised-button>Reportar</button>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
 
-<mat-card *ngIf="reports.length > 0; else cardEmpty">
+<mat-card *ngIf="reports.length > 0;">
   <mat-card-title>Historial de Reportes</mat-card-title>
   <mat-card-content *ngFor="let report of reports">
     <div class="row middle-xs">
@@ -31,8 +20,6 @@
     </div>
   </mat-card-content>
 </mat-card>
-<ng-template #cardEmpty>
-  <mat-card>
-    <mat-card-title>No hay reportes que mostrar</mat-card-title>
-  </mat-card>
-</ng-template>
+
+<mat-spinner></mat-spinner>
+

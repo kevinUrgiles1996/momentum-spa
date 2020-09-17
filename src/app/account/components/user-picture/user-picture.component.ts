@@ -4,6 +4,7 @@ import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 import { UserService } from '@core/services/user/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-picture',
@@ -15,12 +16,12 @@ export class UserPictureComponent implements OnInit {
   valid = false;
   imageFile: File;
   errorMessage: string;
-  succesMessage: string;
-  urlImage: string;
+  spinnerVisible = false;
 
   constructor(
     private storage: AngularFireStorage,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class UserPictureComponent implements OnInit {
   }
 
   uploadFile(event: Event){
-    this.urlImage = './../../../../assets/images/spinner3.svg';
+    this.spinnerVisible = true;
     event.preventDefault();
     if (this.valid){
       const dir = `images/profile/${this.imageFile.name}`;
@@ -53,10 +54,10 @@ export class UserPictureComponent implements OnInit {
               .subscribe((url) => {
                 if (url){
                   this.userService.updateUserDetails({ profileUrl: url })
-                    .subscribe((result) => console.log(result));
-                  this.succesMessage = 'Tu foto de perfil ha sido actualizada correctamente';
-                  setTimeout(() => this.succesMessage = '', 3000);
-                  this.urlImage = '';
+                    .subscribe((result) => {
+                      this.snackBar.open('Tu foto de perfil ha sido actualizada', '', { duration: 2000 });
+                    });
+                  this.spinnerVisible = false;
                   document.querySelector('input').value = null;
                   this.valid = false;
                 }

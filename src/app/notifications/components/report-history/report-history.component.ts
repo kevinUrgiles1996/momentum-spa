@@ -10,7 +10,7 @@ import { GoalService } from '@core/services/goal/goal.service';
 })
 export class ReportHistoryComponent implements OnInit {
   reports: Report[] = [];
-
+  reportsSpinnerVisible = true;
   constructor(
     private reportService: ReportService,
     private goalService: GoalService
@@ -33,6 +33,7 @@ export class ReportHistoryComponent implements OnInit {
                 success: successReports,
               } = resultReports;
               if (successReports) {
+                this.reportsSpinnerVisible = false;
                 dataReports.forEach((report) => {
                   report.date = report.date.substring(0, 10);
                   this.reports.push(report);
