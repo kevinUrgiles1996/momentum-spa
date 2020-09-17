@@ -14,36 +14,24 @@ export class StatisticsComponent implements OnInit {
     responsive: true,
   };
 
-  barChartLabels: Label[] = [
-    /*'Niños contra el cancer',
-    'Menos personas viviendo en las calles',
-    'Amigos de 4 patas',
-    'Por una educación más justa',
-    'Ecuador más conectado',
-    'Por una infancia sin hambre',*/
-  ];
+  barChartLabels: Label[] = [];
   barChartType: ChartType = 'horizontalBar';
   barChartLegend = true;
   barChartPlugins = [];
 
   barChartData: ChartDataSets[] = [
     {
-      data: [
-        //50, 70, 40, 40, 16, 33
-      ],
+      data: [],
       label: 'Personas que no han cumplido su meta',
     },
     {
-      data: [
-        //50, 30, 20, 10, 14, 17
-      ],
+      data: [],
       label: 'Personas que si han cumplido su meta',
     },
   ];
 
 
   statistics: Statistic[];
-  //barChartLabels: Label[] = new Array();
   constructor(private statisticSevice: StatisticService) {}
 
   ngOnInit(): void {
@@ -51,12 +39,10 @@ export class StatisticsComponent implements OnInit {
       .subscribe((result: { success: boolean, data: Statistic[] }) => {
         const { success, data } = result;
         if (success){
-          this.statistics = data;
-          var labels = new Array(this.statistics.length);
-          var met = new Array(this.statistics.length);
-          var missed = new Array(this.statistics.length);
-          data.forEach(function(value) {
-            console.log(value);
+          const labels = [];
+          const met = [];
+          const missed = [];
+          data.forEach((value) => {
             labels.push(value.name);
             missed.push(value.missed);
             met.push(value.met);
