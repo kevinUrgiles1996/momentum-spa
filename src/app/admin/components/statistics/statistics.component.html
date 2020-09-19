@@ -9,4 +9,14 @@
     [chartType]="barChartType"
   >
   </canvas>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-10">
+      <button mat-raised-button color="accent" (click)="downloadCsv()">Descargar CSV</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-10">
+      <button mat-raised-button color='primary' (click)="getImportedStatistics()">Obtener reporte</button>
+    </div>
+  </div>
 </div>

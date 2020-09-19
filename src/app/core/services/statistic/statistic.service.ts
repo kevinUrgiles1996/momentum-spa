@@ -15,9 +15,17 @@ export class StatisticService {
     private http: HttpClient
   ) { }
 
-  getStatistics(){
+  getImportedStatistics(){
     return this.http
-      .get(`${environment.urlStatisticsApi}/statistics`)
+      .get(`${environment.urlApi}/statistics`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getStatistics(adminId: string){
+    return this.http
+      .get(`${environment.urlStatisticsApi}/statistics/${adminId}`)
       .pipe(
         catchError(this.handleError)
       );

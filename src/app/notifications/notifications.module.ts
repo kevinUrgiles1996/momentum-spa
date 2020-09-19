@@ -8,6 +8,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { ReportHistoryComponent } from './components/report-history/report-history.component';
 import { TransactionDescriptionComponent } from './components/transaction-description/transaction-description.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TransactionDescriptionComponent } from './components/transaction-descri
     NotificationsRoutingModule,
     SharedModule,
     RouterModule,
+    ChartsModule
   ],
 })
 export class NotificationsModule {}

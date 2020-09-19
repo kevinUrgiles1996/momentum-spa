@@ -10,6 +10,16 @@
         [transaction]="transaction"
       >
       </app-transaction-description>
+      <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
     </div>
   </mat-card-content>
 </mat-card>
